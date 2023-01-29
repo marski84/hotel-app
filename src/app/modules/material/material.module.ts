@@ -7,7 +7,6 @@ import { MatButtonModule } from '@angular/material/button';
 
 const materialModules = [
   ReactiveFormsModule,
-  BrowserAnimationsModule,
   MatFormFieldModule,
   MatInputModule,
   MatButtonModule,

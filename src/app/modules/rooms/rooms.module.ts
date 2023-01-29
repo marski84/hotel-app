@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-
+import { CoreModule } from '../core/core.module';
+import { SharedModule } from '../shared/shared.module';
+import { RoomsComponent } from './rooms/rooms.component';
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ]
+  declarations: [RoomsComponent],
+  imports: [CoreModule, SharedModule],
+  exports: [RoomsComponent],
 })
-export class RoomsModule { }
+export class RoomsModule {}
