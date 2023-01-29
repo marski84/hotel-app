@@ -1,0 +1,32 @@
+<div>
+    <form
+        [formGroup]="loginForm"
+        class="login-form"
+    >
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input
+                type="password"
+                matInput
+                [formControl]="passwordCtrl"
+                placeholder="Input password to log into the system"
+            >
+            <mat-error *ngIf="passwordCtrl.hasError('required')">
+                Password is
+                <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <div>
+            <button
+                [disabled]="!passwordCtrl.valid"
+                mat-raised-button
+                (click)="handleLogin()"
+            >
+                Log in
+            </button>
+        </div>
+
+    </form>
+
+</div>
