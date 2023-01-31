@@ -6,6 +6,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,8 @@ export class AuthService {
 
   constructor(
     @Inject('adminPassword') private adminPasswordValue: string,
-    @Inject('workerPassword') private workerPasswordValue: string
+    @Inject('workerPassword') private workerPasswordValue: string,
+    private toastService: ToastrService
   ) {
     this.adminPassword = adminPasswordValue;
     this.workerPassword = workerPasswordValue;
@@ -35,7 +37,7 @@ export class AuthService {
       window.sessionStorage.setItem('authLevel', 'worker');
       return true;
     }
-
+    this.toastService.error('Invalid login', 'Login error!');
     return false;
   }
 

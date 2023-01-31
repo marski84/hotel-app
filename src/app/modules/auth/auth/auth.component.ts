@@ -28,7 +28,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     console.log('destroyed');
 
-    this.authService.handleLogout();
+    // this.authService.handleLogout();
   }
 
   handleLogin() {
