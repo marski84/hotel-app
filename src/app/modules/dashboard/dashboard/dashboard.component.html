@@ -1,4 +1,10 @@
 <h1>Logged in</h1>
 
-<!-- <app-rooms></app-rooms> -->
-<app-rooms></app-rooms>
+<router-outlet></router-outlet>
+
+<button
+    mat-raised-button
+    (click)="handleLogout()"
+>
+    Log out
+</button>

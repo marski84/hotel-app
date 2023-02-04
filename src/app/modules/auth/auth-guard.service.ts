@@ -2,12 +2,16 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
+  CanLoad,
+  Route,
   Router,
   RouterStateSnapshot,
+  UrlSegment,
   UrlTree,
 } from '@angular/router';
 import { AuthService } from './auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,21 +22,15 @@ export class AuthGuardService implements CanActivate {
     private authService: AuthService,
     private toastService: ToastrService
   ) {}
+  authLevelToken = window.sessionStorage.getItem('authLevelToken');
+  adminPriviliges = this.authService.adminPassword;
+  workerPriviliges = this.authService.workerPassword;
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): boolean {
-    const authLevel = window.sessionStorage.getItem('authLevel');
-    console.log(authLevel);
-
-    const adminPriviliges = this.authService.adminPassword;
-    const workerPriviliges = this.authService.workerPassword;
-
-    console.log(this.authService.adminPassword);
-
-    if (authLevel !== adminPriviliges && authLevel !== workerPriviliges) {
-      // alert('You are not allowed to view this page');
+  canActivate(): boolean {
+    if (
+      this.authLevelToken !== this.adminPriviliges &&
+      this.authLevelToken !== this.workerPriviliges
+    ) {
       this.toastService.error('Please log in.', 'Login error');
       console.log('ok');
 
@@ -42,4 +40,19 @@ export class AuthGuardService implements CanActivate {
     }
     return true;
   }
+
+  // canLoad(route: Route): boolean {
+  //   if (
+  //     route.path === 'dashboard' &&
+  //     this.authLevelToken === this.adminPriviliges
+  //   ) {
+  //     console.log('canload');
+
+  //     return true;
+  //   }
+
+  //   console.log('canload false');
+
+  //   return false;
+  // }
 }

@@ -3,9 +3,7 @@ import { CoreModule } from '../core/core.module';
 import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
-  declarations: [
-    AdminComponent
-  ],
+  declarations: [AdminComponent],
   imports: [CoreModule],
 })
 export class AdminModule {}

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './modules/auth/auth/auth.component';
 import { AuthGuardService } from './modules/auth/auth-guard.service';
+import { AuthPreloadStrategy } from './modules/auth/auth-preload-strategy';
 
 const routes: Routes = [
   { path: '', component: AuthComponent },
@@ -13,10 +14,24 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuardService],
   },
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./modules/admin/admin.module').then((m) => m.AdminModule),
+    data: {
+      preloaded: true,
+    },
+    canActivate: [AuthGuardService],
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: AuthPreloadStrategy,
+    }),
+  ],
   exports: [RouterModule],
+  providers: [],
 })
 export class AppRoutingModule {}

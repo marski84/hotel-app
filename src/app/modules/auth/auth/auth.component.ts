@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { RouteConfigLoadStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AuthComponent implements OnInit, OnDestroy {
   loginForm = this.fb.group({
-    password: ['', Validators.required],
+    password: ['admin', Validators.required],
   });
 
   get passwordCtrl() {

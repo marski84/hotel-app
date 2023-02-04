@@ -5,7 +5,7 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
@@ -22,26 +22,27 @@ export class AuthService {
   ) {
     this.adminPassword = adminPasswordValue;
     this.workerPassword = workerPasswordValue;
-
-    console.log(this.adminPassword);
-    console.log(this.workerPassword);
   }
 
   handleUserAuth(password: string) {
     if (password === this.adminPassword) {
-      window.sessionStorage.setItem('authLevel', 'admin');
+      window.sessionStorage.setItem('authLevelToken', 'admin');
       return true;
     }
 
     if (password === this.workerPassword) {
-      window.sessionStorage.setItem('authLevel', 'worker');
+      window.sessionStorage.setItem('authLevelToken', 'worker');
       return true;
     }
     this.toastService.error('Invalid login', 'Login error!');
     return false;
   }
 
+  getUserAuthPriviliges() {
+    return of(window.sessionStorage.getItem('authLevelToken'));
+  }
+
   handleLogout() {
-    window.sessionStorage.removeItem('authLevel');
+    window.sessionStorage.removeItem('authLevelToken');
   }
 }
