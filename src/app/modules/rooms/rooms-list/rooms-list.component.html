@@ -1,0 +1,7 @@
+<ng-container *ngIf="hotelRoomsObservable$ | async as rooms">
+    <div *ngFor="let room of rooms">
+        <app-room-view [room]="room"></app-room-view>
+    </div>
+
+    
+</ng-container>

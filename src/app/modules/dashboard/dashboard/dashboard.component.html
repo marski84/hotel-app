@@ -1,10 +1,19 @@
 <h1>Logged in</h1>
 
-<router-outlet></router-outlet>
-
 <button
     mat-raised-button
     (click)="handleLogout()"
 >
     Log out
 </button>
+
+<button
+    mat-raised-button
+    routerLink="/dashboard/rooms-list"
+>
+    rooms
+</button>
+
+<router-outlet></router-outlet>
+
+<!-- <app-rooms-list></app-rooms-list> -->

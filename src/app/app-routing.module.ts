@@ -23,6 +23,13 @@ const routes: Routes = [
     },
     canActivate: [AuthGuardService],
   },
+
+  // {
+  //   path: 'dashboard',
+  //   loadChildren: () =>
+  //     import('./modules/rooms/rooms.module').then((m) => m.RoomsModule),
+  //   canActivate: [AuthGuardService],
+  // },
 ];
 
 @NgModule({
