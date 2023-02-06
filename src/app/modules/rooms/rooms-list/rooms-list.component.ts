@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RoomsService } from '../rooms.service';
 import { AuthService } from '../../auth/auth.service';
-import { Subscription } from 'rxjs';
+import { Subscription, filter, tap } from 'rxjs';
 
 @Component({
   selector: 'app-rooms-list',
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class RoomsListComponent implements OnInit {
   hotelRoomsObservable$ = this.roomsService.getHotelRooms();
-  authLevel!: Subscription;
+  authLevel!: string | null;
 
   constructor(
     private roomsService: RoomsService,
@@ -18,6 +18,9 @@ export class RoomsListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.authLevel = this.authService.getUserAuthPriviliges().subscribe();
+    this.authService
+      .getUserAuthPriviliges()
+      .pipe(tap((authLevelToken) => (this.authLevel = authLevelToken)))
+      .subscribe();
   }
 }

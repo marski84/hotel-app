@@ -1,7 +1,17 @@
 <ng-container *ngIf="hotelRoomsObservable$ | async as rooms">
     <div *ngFor="let room of rooms">
-        <app-room-view [room]="room"></app-room-view>
+        <app-room-view [room]="room">
+            <div *ngIf="authLevel === 'admin' then adminActions else workerActions "></div>
+
+            <ng-template #adminActions>
+                <app-admin-actions></app-admin-actions>
+            </ng-template>
+
+            <ng-template #workerActions>
+                <app-worker-actions></app-worker-actions>
+            </ng-template>
+
+        </app-room-view>
     </div>
 
-    
 </ng-container>
