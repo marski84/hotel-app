@@ -4,7 +4,13 @@
             <div *ngIf="authLevel === 'admin' then adminActions else workerActions "></div>
 
             <ng-template #adminActions>
-                <app-admin-actions></app-admin-actions>
+                <app-admin-actions
+                    (roomStateChangeEmitted)="handleRoomStateChange($event)"
+                    [roomData]="{
+                    roomNr: room.roomNumber,
+                    roomState: room.roomState
+                  }"
+                ></app-admin-actions>
             </ng-template>
 
             <ng-template #workerActions>

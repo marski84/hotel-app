@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RoomsService } from '../rooms.service';
 import { AuthService } from '../../auth/auth.service';
-import { Subscription, filter, tap } from 'rxjs';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-rooms-list',
@@ -22,5 +22,9 @@ export class RoomsListComponent implements OnInit {
       .getUserAuthPriviliges()
       .pipe(tap((authLevelToken) => (this.authLevel = authLevelToken)))
       .subscribe();
+  }
+
+  handleRoomStateChange(updatedRoomState: any) {
+    this.roomsService.updateRoomData(updatedRoomState);
   }
 }
