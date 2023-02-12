@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RoomStateEnum } from 'src/app/modules/shared/models/room-state.enum';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { RoomStateUpdate } from 'src/app/modules/shared/models/room-state-update.interface';
+import { RoomInterface } from '../../../shared/models/room.interface';
 
 @Component({
   selector: 'app-admin-actions',
@@ -9,9 +9,9 @@ import { RoomStateUpdate } from 'src/app/modules/shared/models/room-state-update
   styleUrls: ['./admin-actions.component.scss'],
 })
 export class AdminActionsComponent implements OnInit {
-  @Input() roomData!: RoomStateUpdate;
-  @Output() roomStateChangeEmitted: EventEmitter<RoomStateUpdate> =
-    new EventEmitter<RoomStateUpdate>();
+  @Input() room!: RoomInterface;
+  @Output() roomStateChangeEmitted: EventEmitter<RoomInterface> =
+    new EventEmitter<RoomInterface>();
 
   roomStateForm = this.fb.group({
     state: ['', Validators.required],
@@ -31,16 +31,16 @@ export class AdminActionsComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.roomStateCtrl.setValue(this.roomData.roomState);
+    this.roomStateCtrl.setValue(this.room.roomState);
   }
 
   handleRoomStateChange() {
     if (this.roomStateForm.valid) {
-      const updatedRoomStateData: RoomStateUpdate = {
-        roomNr: this.roomData.roomNr,
-        roomState: this.roomStateCtrl.value,
-      };
-      this.roomStateChangeEmitted.emit(updatedRoomStateData);
+      this.room.roomState = this.roomStateCtrl.value;
+      const editedRoom = JSON.parse(JSON.stringify(this.room));
+      this.roomStateChangeEmitted.emit(editedRoom);
     }
   }
 }
+
+// Partial<RoomInterface>

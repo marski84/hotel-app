@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { RoomInterface } from '../shared/models/room.interface';
 import { RoomStateEnum } from '../shared/models/room-state.enum';
 import { of } from 'rxjs';
-import { RoomStateUpdate } from '../shared/models/room-state-update.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -40,21 +39,22 @@ export class RoomsService {
     return of(this.hotelRooms);
   }
 
-  updateRoomData(updateData: RoomStateUpdate) {
+  updateRoomData(updateData: RoomInterface) {
     console.log(updateData);
     const roomIndex = this.findRoomIndex(updateData);
-    if (roomIndex !== -1) {
-      this.updateRoomState(roomIndex, updateData);
+    if (roomIndex === -1) {
+      return;
     }
+    this.updateRoomState(roomIndex, updateData);
   }
 
-  private findRoomIndex(updateData: RoomStateUpdate) {
+  private findRoomIndex(updateData: RoomInterface) {
     return this.hotelRooms.findIndex(
-      (room) => room.roomNumber === updateData.roomNr
+      (room) => room.roomNumber === updateData.roomNumber
     );
   }
 
-  private updateRoomState(roomIndex: number, updateData: RoomStateUpdate) {
+  private updateRoomState(roomIndex: number, updateData: RoomInterface) {
     this.hotelRooms[roomIndex].roomState = updateData.roomState;
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RoomsService } from '../rooms.service';
 import { AuthService } from '../../auth/auth.service';
 import { tap } from 'rxjs';
+import { AuthLevel } from '../../shared/models/auth-level.enum';
 
 @Component({
   selector: 'app-rooms-list',
@@ -11,6 +12,8 @@ import { tap } from 'rxjs';
 export class RoomsListComponent implements OnInit {
   hotelRoomsObservable$ = this.roomsService.getHotelRooms();
   authLevel!: string | null;
+
+  AuthLevel = AuthLevel;
 
   constructor(
     private roomsService: RoomsService,

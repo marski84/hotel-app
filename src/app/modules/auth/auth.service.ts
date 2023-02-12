@@ -7,6 +7,8 @@ import {
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { ApiHandlerService } from './api-handler.service';
+import { AuthLevel } from '../shared/models/auth-level.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +20,7 @@ export class AuthService {
   constructor(
     @Inject('adminPassword') private adminPasswordValue: string,
     @Inject('workerPassword') private workerPasswordValue: string,
+    private apiService: ApiHandlerService,
     private toastService: ToastrService
   ) {
     this.adminPassword = adminPasswordValue;
@@ -26,12 +29,12 @@ export class AuthService {
 
   handleUserAuth(password: string) {
     if (password === this.adminPassword) {
-      window.sessionStorage.setItem('authLevelToken', 'admin');
+      this.apiService.handleAuthSuccess(AuthLevel.ADMIN).subscribe();
       return true;
     }
 
     if (password === this.workerPassword) {
-      window.sessionStorage.setItem('authLevelToken', 'worker');
+      this.apiService.handleAuthSuccess(AuthLevel.WORKER).subscribe();
       return true;
     }
     this.toastService.error('Invalid login', 'Login error!');
@@ -39,10 +42,10 @@ export class AuthService {
   }
 
   getUserAuthPriviliges() {
-    return of(window.sessionStorage.getItem('authLevelToken'));
+    return of(this.apiService.getAuthLevel());
   }
 
   handleLogout() {
-    window.sessionStorage.removeItem('authLevelToken');
+    this.apiService.logOutUser().subscribe();
   }
 }

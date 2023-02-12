@@ -26,7 +26,7 @@ export class AuthGuardService implements CanActivate {
   adminPriviliges = this.authService.adminPassword;
   workerPriviliges = this.authService.workerPassword;
 
-  canActivate(): boolean {
+  canActivate(): UrlTree | boolean {
     if (
       this.authLevelToken !== this.adminPriviliges &&
       this.authLevelToken !== this.workerPriviliges
@@ -36,7 +36,7 @@ export class AuthGuardService implements CanActivate {
 
       this.router.navigate(['']);
 
-      return false;
+      return new UrlTree();
     }
     return true;
   }
@@ -56,3 +56,6 @@ export class AuthGuardService implements CanActivate {
   //   return false;
   // }
 }
+
+// czyJestZalogowany - /login
+// czyJestAdmin - /dashboard

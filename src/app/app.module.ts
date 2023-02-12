@@ -14,9 +14,9 @@ import { SharedModule } from './modules/shared/shared.module';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     SharedModule,
     CoreModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
     AuthModule,
   ],

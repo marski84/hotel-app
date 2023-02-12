@@ -1,15 +1,12 @@
 <ng-container *ngIf="hotelRoomsObservable$ | async as rooms">
     <div *ngFor="let room of rooms">
         <app-room-view [room]="room">
-            <div *ngIf="authLevel === 'admin' then adminActions else workerActions "></div>
+            <div *ngIf="authLevel === AuthLevel.ADMIN then adminActions else workerActions "></div>
 
             <ng-template #adminActions>
                 <app-admin-actions
                     (roomStateChangeEmitted)="handleRoomStateChange($event)"
-                    [roomData]="{
-                    roomNr: room.roomNumber,
-                    roomState: room.roomState
-                  }"
+                    [room]="room"
                 ></app-admin-actions>
             </ng-template>
 

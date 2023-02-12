@@ -2,6 +2,7 @@ import { PreloadingStrategy, Route } from '@angular/router';
 import { Observable, of, switchMap } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
+import { AuthLevel } from '../shared/models/auth-level.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,12 @@ export class AuthPreloadStrategy implements PreloadingStrategy {
       .getUserAuthPriviliges()
       .pipe(
         switchMap((result) => {
-          if (result === 'admin' && route.data && route.data['preloaded']) {
+          // iif()
+          if (
+            result === AuthLevel.ADMIN &&
+            route.data &&
+            route.data['preloaded']
+          ) {
             console.log('admin preload');
 
             return of(fn());

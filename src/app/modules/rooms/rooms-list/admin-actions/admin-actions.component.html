@@ -16,7 +16,7 @@
         </mat-form-field>
 
         <button
-            [disabled]="roomStateCtrl.value === roomData.roomState"
+            [disabled]="roomStateCtrl.value === room.roomState"
             mat-raised-button
             (click)="handleRoomStateChange()"
         >
