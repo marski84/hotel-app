@@ -3,7 +3,8 @@ import {
   Directive,
   ElementRef,
   Input,
-  Renderer2,
+  TemplateRef,
+  ViewChild,
   ViewContainerRef,
 } from '@angular/core';
 import { AdminActionsComponent } from './admin-actions/admin-actions.component';
@@ -12,6 +13,7 @@ import { map, tap } from 'rxjs';
 import { AuthLevel } from '../../shared/models/auth-level.enum';
 import { RoomInterface } from '../../shared/models/room.interface';
 import { WorkerActionsComponent } from './worker-actions/worker-actions.component';
+import { Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[appUserRoleView]',
@@ -19,21 +21,41 @@ import { WorkerActionsComponent } from './worker-actions/worker-actions.componen
 export class UserRoleViewDirective {
   constructor(
     private authService: AuthService,
-    private componentFactoryResolver: ComponentFactoryResolver,
-    private viewContainerRef: ViewContainerRef
+    private renderer: Renderer2,
+    private elementRef: ElementRef,
+    private viewContainerRef: ViewContainerRef,
+    private templateRef: TemplateRef<any>
   ) {}
 
-  @Input() room!: RoomInterface;
+  private userAuthToValidate!: AuthLevel;
+
+  @Input()
+  set appUserRoleView(val: AuthLevel) {
+    this.userAuthToValidate = val;
+    this.updateView();
+  }
 
   ngOnInit(): void {
-    this.checkUserRole();
+    console.log(this.userAuthToValidate);
   }
 
   checkUserRole() {
-    const userAuth = this.authService
+    // console.log(this.templateRef);
+
+    this.authService
       .getUserAuthPriviliges()
       .pipe(map((value) => this.renderUserView(value)))
       .subscribe();
+  }
+
+  private checkUserPermissions() {}
+
+  private updateView() {
+    if (true) {
+      this.viewContainerRef.createEmbeddedView(this.templateRef);
+    } else {
+      this.viewContainerRef.clear();
+    }
   }
 
   renderUserView(value: string | null) {
@@ -43,28 +65,11 @@ export class UserRoleViewDirective {
       return;
     }
 
-    if (value === 'admin') {
-      const adminActionsComponent =
-        this.componentFactoryResolver.resolveComponentFactory(
-          AdminActionsComponent
-        );
-      const componentRef = this.viewContainerRef.createComponent(
-        adminActionsComponent
-      );
-
-      componentRef.instance.room = this.room;
+    if (value === AuthLevel.ADMIN) {
+      console.log('ok');
     }
 
-    if (value === 'worker') {
-      const workerActionsComponent =
-        this.componentFactoryResolver.resolveComponentFactory(
-          WorkerActionsComponent
-        );
-      const componentRef = this.viewContainerRef.createComponent(
-        workerActionsComponent
-      );
-
-      // componentRef. = this.room;
+    if (value === AuthLevel.WORKER) {
     }
   }
 }

@@ -1,18 +1,21 @@
-<mat-card>
-    <mat-card-header>
-        <mat-card-title>Room number: {{room.roomNumber}}</mat-card-title>
-    </mat-card-header>
+<mat-card-header>
+    <mat-card-title>Room number: {{room.roomNumber}}</mat-card-title>
+</mat-card-header>
 
-    <mat-card-subtitle>
-        <div>Room price: {{room.pricePerDay}}</div>
-    </mat-card-subtitle>
+<mat-card-subtitle>
+    <div>Room price: {{room.pricePerDay}}</div>
+</mat-card-subtitle>
 
-    <mat-card-content>
-        <div>Room state: {{room.roomState}}</div>
-    </mat-card-content>
+<mat-card-content>
+    <div>Room state: {{room.roomState}}</div>
+</mat-card-content>
 
-    <mat-card-actions>
-        <ng-content #roomStateActions></ng-content>
+<mat-card-actions>
+    <div>
+        <ng-content
+            #roomStateActions
+            (roomStateChangeEmitted)="roomStateActions.onRoomCheck($event)"
+        ></ng-content>
+    </div>
 
-    </mat-card-actions>
-</mat-card>
+</mat-card-actions>

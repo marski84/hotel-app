@@ -1,1 +1,7 @@
-<p>worker-actions works!</p>
+<button
+    mat-raised-button
+    *ngIf="room.roomState === RoomState.DIRTY"
+    (click)="onRoomCheck()"
+>
+    Check room
+</button>

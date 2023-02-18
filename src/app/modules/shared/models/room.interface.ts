@@ -4,4 +4,5 @@ export interface RoomInterface {
   roomNumber: string;
   roomState: RoomStateEnum;
   pricePerDay: string;
+  markedForCheck: boolean;
 }

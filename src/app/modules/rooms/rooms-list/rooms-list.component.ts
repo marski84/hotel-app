@@ -28,6 +28,8 @@ export class RoomsListComponent implements OnInit {
   }
 
   handleRoomStateChange(updatedRoomState: any) {
+    console.log(updatedRoomState);
+
     this.roomsService.updateRoomData(updatedRoomState);
   }
 }

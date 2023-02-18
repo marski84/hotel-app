@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, TemplateRef } from '@angular/core';
 import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 import { RoomsListComponent } from './rooms-list/rooms-list.component';
@@ -18,5 +18,6 @@ import { UserRoleViewDirective } from './rooms-list/user-role-view.directive';
   ],
   imports: [SharedModule, RoomsRoutingModule, CoreModule],
   exports: [RoomsListComponent],
+  // providers: [{ provide: TemplateRef, useClass: UserRoleViewDirective }],
 })
 export class RoomsModule {}
