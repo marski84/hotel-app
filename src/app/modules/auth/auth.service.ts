@@ -14,17 +14,17 @@ import { AuthLevel } from '../shared/models/auth-level.enum';
   providedIn: 'root',
 })
 export class AuthService {
-  adminPassword: string = '';
-  workerPassword: string = '';
+  adminPassword: AuthLevel.ADMIN;
+  workerPassword: AuthLevel.WORKER;
 
   constructor(
-    @Inject('adminPassword') private adminPasswordValue: string,
-    @Inject('workerPassword') private workerPasswordValue: string,
+    // @Inject('adminPassword') private adminPasswordValue: string,
+    // @Inject('workerPassword') private workerPasswordValue: string,
     private apiService: ApiHandlerService,
     private toastService: ToastrService
   ) {
-    this.adminPassword = adminPasswordValue;
-    this.workerPassword = workerPasswordValue;
+    this.adminPassword = AuthLevel.ADMIN;
+    this.workerPassword = AuthLevel.WORKER;
   }
 
   handleUserAuth(password: string) {

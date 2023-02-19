@@ -5,6 +5,7 @@
 
                 <app-admin-actions
                     (roomStateChangeEmitted)="handleRoomStateChange($event)"
+                    *appUserRoleView="AuthLevel.ADMIN"
                     #adminActions
                     [room]="room"
                 ></app-admin-actions>
