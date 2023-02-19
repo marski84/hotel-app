@@ -18,7 +18,7 @@ export class RoomsService {
       roomNumber: '2',
       pricePerDay: '250',
       roomState: RoomStateEnum.DIRTY,
-      markedForCheck: false,
+      markedForCheck: true,
     },
     {
       roomNumber: '3',

@@ -37,6 +37,7 @@ export class AdminActionsComponent implements OnInit {
   handleRoomStateChange() {
     if (this.roomStateForm.valid) {
       this.room.roomState = this.roomStateCtrl.value;
+      this.room.markedForCheck = false;
       const editedRoom = JSON.parse(JSON.stringify(this.room));
       this.roomStateChangeEmitted.emit(editedRoom);
     }

@@ -1,21 +1,31 @@
-<mat-card-header>
-    <mat-card-title>Room number: {{room.roomNumber}}</mat-card-title>
-</mat-card-header>
+<div>
+    <mat-card-header>
+        <mat-card-title>
 
-<mat-card-subtitle>
-    <div>Room price: {{room.pricePerDay}}</div>
-</mat-card-subtitle>
+            <div [ngClass]="room.markedForCheck ? 'markedForCheck' : '' ">Room number: {{room.roomNumber}}</div>
+            <div
+                [ngClass]="room.markedForCheck ? 'markedForCheck' : '' "
+                *ngIf="room.markedForCheck"
+            >
+                Room needs to be checked!!
+            </div>
 
-<mat-card-content>
-    <div>Room state: {{room.roomState}}</div>
-</mat-card-content>
+        </mat-card-title>
+    </mat-card-header>
 
-<mat-card-actions>
-    <div>
-        <ng-content
-            #roomStateActions
-            (roomStateChangeEmitted)="roomStateActions.onRoomCheck($event)"
-        ></ng-content>
-    </div>
+    <mat-card-subtitle *appUserRoleView="AuthLevel.ADMIN">
+        <div>Room price: {{room.pricePerDay}}</div>
+    </mat-card-subtitle>
 
-</mat-card-actions>
+    <mat-card-content>
+        <div>Room state: {{room.roomState}}</div>
+    </mat-card-content>
+
+    <mat-card-actions>
+        <div>
+            <ng-content></ng-content>
+        </div>
+
+    </mat-card-actions>
+
+</div>
