@@ -1,7 +1,7 @@
 <div>
     <mat-card-header>
         <mat-card-title>
-
+            <!-- TODO: [ngClass]="{markedForCheck: room.markedForCheck; notMarkedForCheck: !room.markedForCheck}" -->
             <div [ngClass]="room.markedForCheck ? 'markedForCheck' : '' ">Room number: {{room.roomNumber}}</div>
             <div
                 [ngClass]="room.markedForCheck ? 'markedForCheck' : '' "

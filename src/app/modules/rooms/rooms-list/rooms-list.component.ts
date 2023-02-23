@@ -11,8 +11,6 @@ import { AuthLevel } from '../../shared/models/auth-level.enum';
 })
 export class RoomsListComponent implements OnInit {
   hotelRoomsObservable$ = this.roomsService.getHotelRooms();
-  authLevel!: string | null;
-
   AuthLevel = AuthLevel;
 
   constructor(
@@ -20,12 +18,7 @@ export class RoomsListComponent implements OnInit {
     private authService: AuthService
   ) {}
 
-  ngOnInit(): void {
-    this.authService
-      .getUserAuthPriviliges()
-      .pipe(tap((authLevelToken) => (this.authLevel = authLevelToken)))
-      .subscribe();
-  }
+  ngOnInit(): void {}
 
   handleRoomStateChange(updatedRoomState: any) {
     console.log(updatedRoomState);

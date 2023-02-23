@@ -7,13 +7,13 @@ import { AuthLevel } from '../../shared/models/auth-level.enum';
   selector: '[appUserRoleView]',
 })
 export class UserRoleViewDirective {
+  private userPermissionLevel!: AuthLevel;
+
   constructor(
     private authService: AuthService,
     private viewContainerRef: ViewContainerRef,
     private templateRef: TemplateRef<any>
   ) {}
-
-  private userPermissionLevel!: AuthLevel;
 
   @Input()
   set appUserRoleView(val: AuthLevel) {

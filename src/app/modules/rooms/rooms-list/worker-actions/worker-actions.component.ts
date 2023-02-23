@@ -13,6 +13,7 @@ export class WorkerActionsComponent implements OnInit {
 
   RoomState = RoomStateEnum;
   @Input() room!: RoomInterface;
+  // set room() { this.isDirty = room.state ===  handleRoomStateChange.Dirty}
   @Output() roomStateChangeEmitted: EventEmitter<RoomInterface> =
     new EventEmitter<RoomInterface>();
 
