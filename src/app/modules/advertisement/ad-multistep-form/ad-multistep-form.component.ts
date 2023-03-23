@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss'],
+  selector: 'app-ad-multistep-form',
+  templateUrl: './ad-multistep-form.component.html',
+  styleUrls: ['./ad-multistep-form.component.scss'],
   providers: [
     {
       provide: STEPPER_GLOBAL_OPTIONS,
@@ -13,7 +13,7 @@ import { FormBuilder, Validators } from '@angular/forms';
     },
   ],
 })
-export class AdminComponent implements OnInit {
+export class AdMultistepFormComponent implements OnInit {
   firstFormGroup = this.fb.group({
     firstCtrl: ['', Validators.required],
   });
@@ -22,6 +22,5 @@ export class AdminComponent implements OnInit {
   });
 
   constructor(private fb: FormBuilder) {}
-
   ngOnInit(): void {}
 }

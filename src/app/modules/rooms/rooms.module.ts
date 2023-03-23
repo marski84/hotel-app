@@ -7,6 +7,10 @@ import { RoomsRoutingModule } from './rooms-routing.module';
 import { AdminActionsComponent } from './rooms-list/admin-actions/admin-actions.component';
 import { WorkerActionsComponent } from './rooms-list/worker-actions/worker-actions.component';
 import { UserRoleViewDirective } from './rooms-list/user-role-view.directive';
+import { AdminModule } from '../admin/admin.module';
+import { RoomsService } from './rooms.service';
+import { ApiHandlerService } from '../auth/api-handler.service';
+import { AbstractApiHandlerService } from 'src/app/abstract-api-handler-service';
 
 @NgModule({
   declarations: [
@@ -16,8 +20,8 @@ import { UserRoleViewDirective } from './rooms-list/user-role-view.directive';
     WorkerActionsComponent,
     UserRoleViewDirective,
   ],
-  imports: [SharedModule, RoomsRoutingModule, CoreModule],
+  imports: [SharedModule, RoomsRoutingModule, CoreModule, AdminModule],
   exports: [RoomsListComponent],
-  // providers: [{ provide: TemplateRef, useClass: UserRoleViewDirective }],
+  providers: [{ provide: AbstractApiHandlerService, useClass: RoomsService }],
 })
 export class RoomsModule {}

@@ -5,6 +5,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 const materialModules = [
   ReactiveFormsModule,
@@ -13,6 +16,9 @@ const materialModules = [
   MatButtonModule,
   MatCardModule,
   MatSelectModule,
+  MatStepperModule,
+  MatCheckboxModule,
+  MatDatepickerModule,
 ];
 @NgModule({
   declarations: [],

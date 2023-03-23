@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { RoomInterface } from '../shared/models/room.interface';
 import { RoomStateEnum } from '../shared/models/room-state.enum';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { ApiHandlerService } from '../auth/api-handler.service';
+import { AbstractApiHandlerService } from 'src/app/abstract-api-handler-service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class RoomsService {
+export class RoomsService extends AbstractApiHandlerService {
   hotelRooms: RoomInterface[] = [
     {
       roomNumber: '1',
@@ -76,14 +78,23 @@ export class RoomsService {
     },
   ];
 
-  constructor() {}
+  constructor() {
+    super();
+  }
+
+  getData(): void {
+    throw new Error('Method not implemented.');
+  }
+
+  saveData(data: any): Observable<boolean> {
+    throw new Error('Method not implemented.');
+  }
 
   getHotelRooms() {
     return of(this.hotelRooms);
   }
 
   updateRoomData(updateData: RoomInterface) {
-    console.log(updateData);
     const roomIndex = this.findRoomIndex(updateData);
     if (roomIndex === -1) {
       return;

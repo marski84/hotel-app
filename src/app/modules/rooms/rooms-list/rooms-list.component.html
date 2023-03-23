@@ -1,4 +1,20 @@
 <ng-container *ngIf="hotelRoomsObservable$ | async as rooms">
+
+    <button
+        mat-raised-button
+        routerLink="/dashboard"
+    >
+        Return to dashboard
+    </button>
+
+    <button
+        *appUserRoleView="AuthLevel.ADMIN"
+        mat-raised-button
+        routerLink="advertisement-form"
+    >
+        Add advertisement
+    </button>
+
     <div *ngFor="let room of rooms">
         <mat-card>
             <app-room-view [room]="room">
