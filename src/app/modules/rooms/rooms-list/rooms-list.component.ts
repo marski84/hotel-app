@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { RoomsService } from '../rooms.service';
-import { AuthService } from '../../auth/auth.service';
-import { tap } from 'rxjs';
 import { AuthLevel } from '../../shared/models/auth-level.enum';
 
 @Component({
@@ -10,19 +8,16 @@ import { AuthLevel } from '../../shared/models/auth-level.enum';
   styleUrls: ['./rooms-list.component.scss'],
 })
 export class RoomsListComponent implements OnInit {
-  hotelRoomsObservable$ = this.roomsService.getHotelRooms();
+  hotelRoomsObservable$ = this.roomsService.data$;
   AuthLevel = AuthLevel;
 
-  constructor(
-    private roomsService: RoomsService,
-    private authService: AuthService
-  ) {}
+  constructor(private roomsService: RoomsService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.roomsService.getData();
+  }
 
   handleRoomStateChange(updatedRoomState: any) {
-    console.log(updatedRoomState);
-
     this.roomsService.updateRoomData(updatedRoomState);
   }
 }

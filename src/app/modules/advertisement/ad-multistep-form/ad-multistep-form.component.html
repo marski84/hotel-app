@@ -1,31 +1,24 @@
 <mat-stepper #stepper>
     <mat-step
-        [stepControl]="firstFormGroup"
+        [stepControl]="basicAdData"
         errorMessage="Name is required."
     >
-        <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Fill out your name</ng-template>
-            <mat-form-field appearance="fill">
-                <mat-label>Name</mat-label>
-                <input
-                    matInput
-                    placeholder="Last name, First name"
-                    formControlName="firstCtrl"
-                    required
-                >
-            </mat-form-field>
-            <div>
-                <p>
-                    Go to a different step to see the error state
-                </p>
-                <button
-                    mat-button
-                    matStepperNext
-                >
-                    Next
-                </button>
-            </div>
-        </form>
+
+        <ng-template matStepLabel>Fill out your name</ng-template>
+        <app-ad-basic-data-form [formName]="basicAdData"></app-ad-basic-data-form>
+        <div>
+            <p>
+                Go to a different step to see the error state
+            </p>
+            <button
+                [disabled]="!basicAdData.valid"
+                mat-button
+                matStepperNext
+            >
+                Next
+            </button>
+            <button (click)="log()">log</button>
+        </div>
     </mat-step>
     <mat-step
         [stepControl]="secondFormGroup"

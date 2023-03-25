@@ -1,0 +1,64 @@
+<form
+    [formGroup]="formName"
+    (submit)="handleSubmit(formName.value)"
+>
+
+    <div>
+
+        <mat-form-field appearance="fill">
+
+            <mat-label>Advertisement title</mat-label>
+            <input
+                matInput
+                [formControl]="adTitleCtrl"
+                placeholder="Advertisement title"
+            >
+        </mat-form-field>
+    </div>
+    <div>
+
+        <mat-form-field appearance="fill">
+
+            <mat-label>Description</mat-label>
+            <input
+                matInput
+                [formControl]="adDescriptionCtrl"
+                placeholder="Description"
+            >
+        </mat-form-field>
+    </div>
+    <div>
+
+        <mat-form-field appearance="fill">
+
+            <mat-label>Advertisement time range</mat-label>
+            <mat-date-range-input
+                [formGroup]="campaignDurationCtrl"
+                [rangePicker]="picker"
+            >
+                <input
+                    matStartDate
+                    [formControl]="campaignDurationStartDateCtrl"
+                    placeholder="Start date"
+                >
+                <input
+                    matEndDate
+                    [formControl]="campaignDurationEndDateCtrl"
+                    placeholder="End date"
+                >
+            </mat-date-range-input>
+            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle
+                matIconSuffix
+                [for]="picker"
+            ></mat-datepicker-toggle>
+
+            <mat-date-range-picker #picker></mat-date-range-picker>
+
+            <mat-error *ngIf="campaignDurationStartDateCtrl.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+            <mat-error *ngIf="campaignDurationEndDateCtrl.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+        </mat-form-field>
+    </div>
+
+    <button type="submit">Submit</button>
+</form>

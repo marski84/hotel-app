@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdBasicInfoComponent } from './ad-basic-info.component';
+import { AdSelectRoomFormComponent } from './ad-select-room-form.component';
 
-describe('AdBasicInfoComponent', () => {
-  let component: AdBasicInfoComponent;
-  let fixture: ComponentFixture<AdBasicInfoComponent>;
+describe('AdSelectRoomFormComponent', () => {
+  let component: AdSelectRoomFormComponent;
+  let fixture: ComponentFixture<AdSelectRoomFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdBasicInfoComponent ]
+      declarations: [ AdSelectRoomFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdBasicInfoComponent);
+    fixture = TestBed.createComponent(AdSelectRoomFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
