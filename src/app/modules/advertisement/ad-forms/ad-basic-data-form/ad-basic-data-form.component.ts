@@ -9,23 +9,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class AdBasicDataFormComponent implements OnInit {
   @Input() formName: any;
 
-  public mask = [
-    '(',
-    /[1-9]/,
-    /\d/,
-    /\d/,
-    ')',
-    ' ',
-    /\d/,
-    /\d/,
-    /\d/,
-    '-',
-    /\d/,
-    /\d/,
-    /\d/,
-    /\d/,
-  ];
-
   get adTitleCtrl() {
     return this.formName.get('adTitle') as FormControl;
   }

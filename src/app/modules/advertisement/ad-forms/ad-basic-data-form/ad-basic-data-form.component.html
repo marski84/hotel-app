@@ -37,11 +37,13 @@
                 [rangePicker]="picker"
             >
                 <input
+                    appDatepickerMask
                     matStartDate
                     [formControl]="campaignDurationStartDateCtrl"
                     placeholder="Start date"
                 >
                 <input
+                    appDatepickerMask
                     matEndDate
                     [formControl]="campaignDurationEndDateCtrl"
                     placeholder="End date"

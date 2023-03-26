@@ -50,6 +50,6 @@ export class AdMultistepFormComponent implements OnInit {
   ngOnInit(): void {}
 
   log() {
-    console.log(this.basicAdData.value);
+    console.log(this.basicAdData.value['campaignDuration']);
   }
 }
