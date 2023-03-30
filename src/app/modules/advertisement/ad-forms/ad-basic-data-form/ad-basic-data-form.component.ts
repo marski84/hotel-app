@@ -7,7 +7,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./ad-basic-data-form.component.scss'],
 })
 export class AdBasicDataFormComponent implements OnInit {
-  @Input() formName: any;
+  @Input() formName!: FormGroup;
 
   get adTitleCtrl() {
     return this.formName.get('adTitle') as FormControl;

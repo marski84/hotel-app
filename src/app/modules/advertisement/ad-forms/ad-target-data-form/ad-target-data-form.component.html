@@ -1,1 +1,34 @@
-<p>ad-target-data-form works!</p>
+<form
+    [formGroup]="formName"
+    (submit)="handleSubmit(formName.value)"
+>
+
+    <mat-label>Select target services</mat-label>
+    <p>
+        <mat-checkbox [formControl]="googleCtrl">Google</mat-checkbox>
+    </p>
+
+    <p>
+        <mat-checkbox [formControl]="bingCtrl">Bing</mat-checkbox>
+    </p>
+    <p>
+        <mat-checkbox [formControl]="amazonCtrl">Amazon</mat-checkbox>
+    </p>
+
+    <P>
+        <mat-checkbox [formControl]="facebookCtrl">Facebook</mat-checkbox>
+    </P>
+
+    <p>
+        <mat-checkbox [formControl]="bookingCtrl">Booking</mat-checkbox>
+    </p>
+
+    <mat-error *ngIf="formName.hasError('requireOneCheckboxToBeChecked')">Invalid start date</mat-error>
+
+    <button
+        type="submit"
+        *ngIf="formName.valid"
+    >
+        submit
+    </button>
+</form>

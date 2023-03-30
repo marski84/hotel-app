@@ -1,1 +1,24 @@
-<p>ad-select-room-form works!</p>
+<ng-container *ngIf="roomsData$ | async as rooms">
+    <div *ngFor="let room of rooms">
+        <mat-card-header>
+            <mat-card-title>
+
+                <div>Room number: {{room.roomNumber}}</div>
+
+            </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <div>Room state: {{room.roomState}}</div>
+        </mat-card-content>
+
+        <mat-card-actions>
+            <div>
+                <ng-content></ng-content>
+            </div>
+
+        </mat-card-actions>
+
+    </div>
+
+</ng-container>
