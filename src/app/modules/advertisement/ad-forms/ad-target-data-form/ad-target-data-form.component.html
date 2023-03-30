@@ -23,7 +23,7 @@
         <mat-checkbox [formControl]="bookingCtrl">Booking</mat-checkbox>
     </p>
 
-    <mat-error *ngIf="formName.hasError('requireOneCheckboxToBeChecked')">Invalid start date</mat-error>
+    <mat-error *ngIf="formName.hasError('requireOneCheckboxToBeChecked')">You must select at least one option</mat-error>
 
     <button
         type="submit"

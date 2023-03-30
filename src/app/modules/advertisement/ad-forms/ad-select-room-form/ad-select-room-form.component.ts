@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { RoomsService } from '../../../rooms/rooms.service';
 import { RoomInterface } from '../../../shared/models/room.interface';
-import { Observable, Subject, filter, takeUntil, tap } from 'rxjs';
+import { Observable, Subject, filter, map, takeUntil, tap } from 'rxjs';
 import { RoomStateEnum } from 'src/app/modules/shared/models/room-state.enum';
 import { AdvertisementService } from '../../advertisement.service';
 
@@ -29,6 +29,11 @@ export class AdSelectRoomFormComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     console.log('select form init');
-    this.roomsData$ = this.roomsService.data$;
+    this.roomsData$ = this.roomsService.data$.pipe(
+      tap(
+        (data) => data.forEach((el) => console.log(el))
+        // console.log(data)
+      )
+    );
   }
 }
