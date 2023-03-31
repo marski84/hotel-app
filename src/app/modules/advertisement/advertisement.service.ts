@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RoomsService } from '../rooms/rooms.service';
-import { filter, map, tap } from 'rxjs';
+import { filter, map, of, tap } from 'rxjs';
 import { RoomStateEnum } from '../shared/models/room-state.enum';
 import { RoomInterface } from '../shared/models/room.interface';
 
@@ -18,10 +18,13 @@ export class AdvertisementService {
     this.roomService.data$
       .pipe(
         map((data) => this.handleFilterRoomList(data)),
+        tap((filteredData) => (this.roomsList = filteredData)),
         tap((data) => console.log(data))
       )
       .subscribe();
     this.roomService.getData();
+
+    return of(this.roomsList);
   }
 
   handleFilterRoomList(roomList: RoomInterface[]) {

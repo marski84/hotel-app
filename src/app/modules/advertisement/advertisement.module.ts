@@ -6,8 +6,9 @@ import { AdFormContainerComponent } from './ad-form-container/ad-form-container.
 import { AdMultistepFormComponent } from './ad-multistep-form/ad-multistep-form.component';
 import { AdBasicDataFormComponent } from './ad-forms/ad-basic-data-form/ad-basic-data-form.component';
 import { AdConfirmFormComponent } from './ad-forms/ad-confirm-form/ad-confirm-form.component';
-import { AdSelectRoomFormComponent } from './ad-forms/ad-select-room-form/ad-select-room-form.component';
 import { AdTargetDataFormComponent } from './ad-forms/ad-target-data-form/ad-target-data-form.component';
+import { MultiStepFormNavigationComponent } from './multi-step-form-navigation/multi-step-form-navigation.component';
+import { AdRoomSelectFormComponent } from './ad-forms/ad-select-room-form/room-ad-select-form';
 
 @NgModule({
   declarations: [
@@ -15,8 +16,9 @@ import { AdTargetDataFormComponent } from './ad-forms/ad-target-data-form/ad-tar
     AdMultistepFormComponent,
     AdBasicDataFormComponent,
     AdTargetDataFormComponent,
-    AdSelectRoomFormComponent,
+    AdRoomSelectFormComponent,
     AdConfirmFormComponent,
+    MultiStepFormNavigationComponent,
   ],
   imports: [CoreModule, MaterialModule],
   exports: [AdFormContainerComponent],

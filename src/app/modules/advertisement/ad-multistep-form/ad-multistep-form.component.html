@@ -1,71 +1,36 @@
 <mat-stepper #stepper>
     <mat-step
         [stepControl]="basicAdData"
-        errorMessage="Ad data is requiered!"
+        errorMessage="Ad data is required!"
     >
 
-        <ng-template matStepLabel>Fill out your name</ng-template>
+        <ng-template matStepLabel>Fill ad basic data</ng-template>
         <app-ad-basic-data-form [formName]="basicAdData"></app-ad-basic-data-form>
-
-        <div>
-            <p>
-                Go to a different step to see the error state
-            </p>
-            <!-- [disabled]="!basicAdData.valid" -->
-
-            <button
-                mat-button
-                matStepperNext
-            >
-                Next
-            </button>
-            <button (click)="log()">log</button>
-        </div>
+        <app-multi-step-form-navigation [canNavigateBack]="false"></app-multi-step-form-navigation>
     </mat-step>
     <mat-step
         [stepControl]="targetAdServices"
         errorMessage="Step is requiered"
     >
-        <ng-template matStepLabel>Fill out your address</ng-template>
+        <ng-template matStepLabel>Select ad services</ng-template>
 
         <app-ad-target-data-form [formName]="targetAdServices"></app-ad-target-data-form>
 
-        <div>
-            <p>
-                Go to a different step to see the error state
-            </p>
-            <button
-                mat-button
-                matStepperPrevious
-            >
-                Back
-            </button>
-            <button
-                mat-button
-                matStepperNext
-            >
-                Next
-            </button>
-        </div>
+        <app-multi-step-form-navigation [data]="targetAdServices"></app-multi-step-form-navigation>
 
     </mat-step>
     <mat-step>
-        <ng-template matStepLabel>Add advertisement</ng-template>
+        <ng-template matStepLabel>Add advertisement to room</ng-template>
         <p>
             Select rooms in which you want ad to be visible
         </p>
 
         <ng-template matStepLabel>Fill out your address</ng-template>
 
-        <app-ad-select-room-form></app-ad-select-room-form>
-
+        <app-room-ad-select-form></app-room-ad-select-form>
         <div>
-            <button
-                mat-button
-                matStepperPrevious
-            >
-                Back
-            </button>
+            <app-multi-step-form-navigation></app-multi-step-form-navigation>
+
             <button
                 mat-button
                 (click)="stepper.reset()"
@@ -79,12 +44,8 @@
         <ng-template matStepLabel>Done</ng-template>
         <p>You are now done.</p>
         <div>
-            <button
-                mat-button
-                matStepperPrevious
-            >
-                Back
-            </button>
+
+            <app-multi-step-form-navigation [canNavigateForward]="false"></app-multi-step-form-navigation>
             <button
                 mat-button
                 (click)="stepper.reset()"
@@ -92,5 +53,6 @@
                 Reset
             </button>
         </div>
+
     </mat-step>
 </mat-stepper>

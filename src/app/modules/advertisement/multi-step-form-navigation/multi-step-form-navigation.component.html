@@ -1,0 +1,18 @@
+<div>
+
+    <button
+        *ngIf="canNavigateBack"
+        mat-button
+        matStepperPrevious
+    >
+        Back
+    </button>
+    <button
+        *ngIf="canNavigateForward"
+        mat-button
+        matStepperNext
+        (click)="handleFormDataSave()"
+    >
+        Next
+    </button>
+</div>
