@@ -1,6 +1,6 @@
 <form
     [formGroup]="formName"
-    (submit)="handleSubmit(formName.value)"
+    (submit)="handleSubmit()"
 >
 
     <div>
@@ -62,5 +62,5 @@
         </mat-form-field>
     </div>
 
-    <button type="submit">Submit</button>
+    <app-multi-step-form-navigation [canNavigateBack]="false"></app-multi-step-form-navigation>
 </form>

@@ -33,7 +33,10 @@ export class AdBasicDataFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  handleSubmit(formName: any) {
-    console.log(formName);
+  handleSubmit() {
+    if (!this.formName.valid) {
+      return;
+    }
+    console.log(this.formName.value);
   }
 }

@@ -9,13 +9,10 @@ import { FormGroup } from '@angular/forms';
 export class MultiStepFormNavigationComponent implements OnInit {
   @Input() canNavigateBack?: boolean = true;
   @Input() canNavigateForward?: boolean = true;
-  @Input() data?: FormGroup;
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  handleFormDataSave() {
-    console.log(this.data);
-  }
+  handleFormDataSave() {}
 }

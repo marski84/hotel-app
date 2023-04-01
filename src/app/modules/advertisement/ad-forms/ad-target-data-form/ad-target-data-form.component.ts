@@ -29,9 +29,10 @@ export class AdTargetDataFormComponent implements OnInit {
     return this.formName.get('booking') as FormControl;
   }
 
-  handleSubmit(formData) {
-    if (this.formName.valid) {
-      console.log(formData);
+  handleSubmit() {
+    if (!this.formName.valid) {
+      return;
     }
+    console.log(this.formName.value);
   }
 }

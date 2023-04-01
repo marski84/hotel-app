@@ -6,7 +6,7 @@
 
         <ng-template matStepLabel>Fill ad basic data</ng-template>
         <app-ad-basic-data-form [formName]="basicAdData"></app-ad-basic-data-form>
-        <app-multi-step-form-navigation [canNavigateBack]="false"></app-multi-step-form-navigation>
+
     </mat-step>
     <mat-step
         [stepControl]="targetAdServices"
@@ -15,8 +15,6 @@
         <ng-template matStepLabel>Select ad services</ng-template>
 
         <app-ad-target-data-form [formName]="targetAdServices"></app-ad-target-data-form>
-
-        <app-multi-step-form-navigation [data]="targetAdServices"></app-multi-step-form-navigation>
 
     </mat-step>
     <mat-step>
@@ -29,7 +27,6 @@
 
         <app-room-ad-select-form></app-room-ad-select-form>
         <div>
-            <app-multi-step-form-navigation></app-multi-step-form-navigation>
 
             <button
                 mat-button

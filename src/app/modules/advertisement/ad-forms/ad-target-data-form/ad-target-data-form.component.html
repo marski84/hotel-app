@@ -1,6 +1,6 @@
 <form
     [formGroup]="formName"
-    (submit)="handleSubmit(formName.value)"
+    (submit)="handleSubmit()"
 >
 
     <mat-label>Select target services</mat-label>
@@ -25,10 +25,6 @@
 
     <mat-error *ngIf="formName.hasError('requireOneCheckboxToBeChecked')">You must select at least one option</mat-error>
 
-    <button
-        type="submit"
-        *ngIf="formName.valid"
-    >
-        submit
-    </button>
+    <app-multi-step-form-navigation></app-multi-step-form-navigation>
+
 </form>
