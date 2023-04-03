@@ -10,11 +10,14 @@ import { RoomInterface } from '../shared/models/room.interface';
 export class AdvertisementService {
   private roomsList!: RoomInterface[];
 
-  formData: [] = [];
+  formData: Partial<{ stepNumber: number }>[] = [];
 
   readonly roomsList$: BehaviorSubject<RoomInterface[]> = new BehaviorSubject(
     this.roomsList
   );
+
+  readonly selectedAdProviders$: BehaviorSubject<string[]> =
+    new BehaviorSubject(['']);
 
   constructor(private roomService: RoomsService) {}
 
@@ -35,5 +38,44 @@ export class AdvertisementService {
       (room) => room.roomState === RoomStateEnum.CLEAN
     );
     return result;
+  }
+
+  handleFormSubmit(formData: Partial<{ stepNumber: number }>) {
+    if (!formData) {
+      return;
+    }
+
+    if (formData.stepNumber === 2) {
+      const data = Object.keys(formData).filter(
+        (data) => data !== 'stepNumber'
+      );
+      this.selectedAdProviders$.next(data);
+    }
+
+    const dataIndex = this.findFormData(formData);
+
+    if (dataIndex === -1) {
+      this.formData.push(formData);
+      return;
+    }
+
+    this.editFormData(formData, dataIndex);
+
+    console.log(this.formData);
+  }
+
+  private findFormData(formData: Partial<{ stepNumber: number }>) {
+    const dataIndex = this.formData.findIndex(
+      (data) => data.stepNumber === formData.stepNumber
+    );
+
+    return dataIndex;
+  }
+
+  private editFormData(
+    formData: Partial<{ stepNumber: number }>,
+    dataIndex: number
+  ) {
+    this.formData[dataIndex] = formData;
   }
 }

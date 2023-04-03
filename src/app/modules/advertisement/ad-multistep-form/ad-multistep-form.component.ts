@@ -97,4 +97,9 @@ export class AdMultistepFormComponent implements OnInit {
   log() {
     console.log(this.basicAdData.value['campaignDuration']);
   }
+
+  handleFormDataSubmit(formData: any) {
+    console.log(formData);
+    this.adService.handleFormSubmit(formData);
+  }
 }

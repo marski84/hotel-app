@@ -14,66 +14,77 @@ export class RoomsService extends AbstractApiHandlerService {
       pricePerDay: '100',
       roomState: RoomStateEnum.CLEAN,
       markedForCheck: false,
+      roomAds: [],
     },
     {
       roomNumber: '2',
       pricePerDay: '250',
       roomState: RoomStateEnum.DIRTY,
       markedForCheck: true,
+      roomAds: [],
     },
     {
       roomNumber: '3',
       pricePerDay: '400',
       roomState: RoomStateEnum.NEEDS_INSPECTION,
       markedForCheck: false,
+      roomAds: [],
     },
     {
       roomNumber: '4',
       pricePerDay: '150',
       roomState: RoomStateEnum.NEEDS_INSPECTION,
       markedForCheck: false,
+      roomAds: [],
     },
     {
       roomNumber: '5',
       pricePerDay: '800',
       roomState: RoomStateEnum.RESERVED,
       markedForCheck: false,
+      roomAds: [],
     },
     {
       roomNumber: '6',
       pricePerDay: '700',
       roomState: RoomStateEnum.CLEAN,
       markedForCheck: false,
+      roomAds: [],
     },
     {
       roomNumber: '7',
       pricePerDay: '600',
       roomState: RoomStateEnum.DIRTY,
       markedForCheck: false,
+      roomAds: [],
     },
     {
       roomNumber: '8',
       pricePerDay: '300',
       roomState: RoomStateEnum.RESERVED,
       markedForCheck: false,
+      roomAds: [],
     },
     {
       roomNumber: '9',
       pricePerDay: '220',
       roomState: RoomStateEnum.CLEAN,
       markedForCheck: false,
+      roomAds: [],
     },
     {
       roomNumber: '10',
       pricePerDay: '175',
       roomState: RoomStateEnum.RESERVED,
       markedForCheck: false,
+      roomAds: [],
     },
     {
       roomNumber: '11',
       pricePerDay: '1000',
       roomState: RoomStateEnum.RESERVED,
       markedForCheck: false,
+      roomAds: [],
     },
   ];
 
@@ -85,7 +96,9 @@ export class RoomsService extends AbstractApiHandlerService {
     const roomsData = window.localStorage.getItem('hotel-rooms');
     if (roomsData) {
       this.data.next(JSON.parse(roomsData));
+      return;
     }
+    this.saveData(this.hotelRooms);
   }
 
   saveData(data: RoomInterface[]): Observable<boolean> {

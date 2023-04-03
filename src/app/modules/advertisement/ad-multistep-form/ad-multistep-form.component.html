@@ -5,7 +5,10 @@
     >
 
         <ng-template matStepLabel>Fill ad basic data</ng-template>
-        <app-ad-basic-data-form [formName]="basicAdData"></app-ad-basic-data-form>
+        <app-ad-basic-data-form
+            [formName]="basicAdData"
+            (formDataEmitted)="handleFormDataSubmit($event)"
+        ></app-ad-basic-data-form>
 
     </mat-step>
     <mat-step
@@ -14,7 +17,10 @@
     >
         <ng-template matStepLabel>Select ad services</ng-template>
 
-        <app-ad-target-data-form [formName]="targetAdServices"></app-ad-target-data-form>
+        <app-ad-target-data-form
+            [formName]="targetAdServices"
+            (formDataEmitted)="handleFormDataSubmit($event)"
+        ></app-ad-target-data-form>
 
     </mat-step>
     <mat-step>

@@ -16,10 +16,18 @@ import { AdvertisementService } from '../../advertisement.service';
 })
 export class AdRoomSelectFormComponent implements OnInit {
   roomsData$: Observable<RoomInterface[]> = this.adService.roomsList$;
+  selectedAdProviders$ = this.adService.selectedAdProviders$;
 
-  constructor(public adService: AdvertisementService) {}
+  constructor(private adService: AdvertisementService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.adService.formData.filter((data) => data.stepNumber === 2);
+    console.log(this.adService.formData);
+  }
+
+  handlePublishAds(roomNumber: string) {
+    console.log(roomNumber);
+  }
 
   // handleSubmit() {
   //   if (!this.formName.valid) {

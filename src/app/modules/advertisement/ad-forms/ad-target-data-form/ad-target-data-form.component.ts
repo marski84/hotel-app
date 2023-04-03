@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class AdTargetDataFormComponent implements OnInit {
   @Input() formName!: FormGroup;
+  @Output() formDataEmitted = new EventEmitter<any>();
 
   constructor() {}
 
@@ -33,6 +34,8 @@ export class AdTargetDataFormComponent implements OnInit {
     if (!this.formName.valid) {
       return;
     }
-    console.log(this.formName.value);
+    const formValue = this.formName.value;
+    formValue.stepNumber = 2;
+    this.formDataEmitted.emit(formValue);
   }
 }

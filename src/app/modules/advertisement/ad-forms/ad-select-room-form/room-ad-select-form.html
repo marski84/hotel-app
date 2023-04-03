@@ -1,24 +1,39 @@
 <ng-container *ngIf="roomsData$ | async as rooms">
+
+    <div *ngIf="selectedAdProviders$ | async as providers">
+        Selected ad serices:
+      {{providers | json}}
+    </div>
+
     <form>
         <div *ngFor="let room of rooms">
-            <mat-card-header>
-                <mat-card-title>
 
-                    <div>Room number: {{room.roomNumber}}</div>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>
 
-                </mat-card-title>
-            </mat-card-header>
+                        <div>Room number: {{room.roomNumber}}</div>
 
-            <mat-card-content>
-                <div>Room state: {{room.roomState}}</div>
-            </mat-card-content>
+                    </mat-card-title>
+                </mat-card-header>
 
-            <mat-card-actions>
-                <div>
-                    <ng-content></ng-content>
-                </div>
+                <mat-card-content>
+                    <div>Room state: {{room.roomState}}</div>
+                </mat-card-content>
 
-            </mat-card-actions>
+                <mat-card-actions>
+                    <button
+                        type="button"
+                        mat-raised-button
+                        (click)="handlePublishAds(room.roomNumber)"
+                    >
+                        Publish selected ads in rooms
+                    </button>
+
+                </mat-card-actions>
+            </mat-card>
+
+            <mat-divider></mat-divider>
 
         </div>
 

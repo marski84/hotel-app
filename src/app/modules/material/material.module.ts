@@ -15,6 +15,7 @@ import {
 } from '@angular/material/core';
 import { DatepickerMaskDirective } from './datepicker-mask.directive';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatDividerModule } from '@angular/material/divider';
 
 const materialModules = [
   ReactiveFormsModule,
@@ -28,6 +29,7 @@ const materialModules = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatMomentDateModule,
+  MatDividerModule,
 ];
 @NgModule({
   declarations: [DatepickerMaskDirective],
