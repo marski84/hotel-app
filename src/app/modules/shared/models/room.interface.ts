@@ -5,5 +5,5 @@ export interface RoomInterface {
   roomState: RoomStateEnum;
   pricePerDay: string;
   markedForCheck: boolean;
-  roomAds: [];
+  roomAds: any[];
 }

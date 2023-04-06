@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RoomsService } from '../rooms/rooms.service';
-import { BehaviorSubject, filter, map, of, tap } from 'rxjs';
+import { BehaviorSubject, map, tap } from 'rxjs';
 import { RoomStateEnum } from '../shared/models/room-state.enum';
 import { RoomInterface } from '../shared/models/room.interface';
 
@@ -22,7 +22,6 @@ export class AdvertisementService {
   constructor(private roomService: RoomsService) {}
 
   getRoomsData() {
-    console.log('ad servide getRooms');
     this.roomService.getData();
     this.roomService.data$
       .pipe(
@@ -31,6 +30,10 @@ export class AdvertisementService {
         tap(() => this.roomsList$.next(this.roomsList))
       )
       .subscribe();
+  }
+
+  updateRoomAds(roomNumber: string) {
+    console.log(roomNumber);
   }
 
   private handleFilterRoomList(roomList: RoomInterface[]) {
@@ -46,10 +49,11 @@ export class AdvertisementService {
     }
 
     if (formData.stepNumber === 2) {
-      const data = Object.keys(formData).filter(
-        (data) => data !== 'stepNumber'
+      const selectedAds = Object.keys(formData).filter(
+        (key) => formData[key] === true
       );
-      this.selectedAdProviders$.next(data);
+
+      this.selectedAdProviders$.next(selectedAds);
     }
 
     const dataIndex = this.findFormData(formData);

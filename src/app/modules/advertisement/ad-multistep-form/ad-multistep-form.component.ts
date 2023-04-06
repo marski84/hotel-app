@@ -6,9 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { RoomsService } from '../../rooms/rooms.service';
-import { filter, tap } from 'rxjs';
-import { RoomStateEnum } from '../../shared/models/room-state.enum';
+
 import { AdvertisementService } from '../advertisement.service';
 import { requireCheckboxesToBeCheckedValidator } from '../ad-forms/ad-target-data-form/requireCheckboxesToBeCheckedValidator';
 
@@ -40,11 +38,11 @@ export class AdMultistepFormComponent implements OnInit {
 
   targetAdServices = this.fb.group(
     {
-      google: [''],
-      bing: [''],
-      amazon: [''],
-      facebook: [''],
-      booking: [''],
+      google: [false],
+      bing: [false],
+      amazon: [false],
+      facebook: [false],
+      booking: [false],
     },
     { validators: [requireCheckboxesToBeCheckedValidator()] }
   );

@@ -119,6 +119,10 @@ export class RoomsService extends AbstractApiHandlerService {
     this.updateRoomState(roomIndex, updateData);
   }
 
+  updateRoomAd(data: any) {
+    console.log(data);
+  }
+
   private findRoomIndex(updateData: RoomInterface) {
     return this.hotelRooms.findIndex(
       (room) => room.roomNumber === updateData.roomNumber

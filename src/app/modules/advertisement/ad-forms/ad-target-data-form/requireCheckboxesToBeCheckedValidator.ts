@@ -10,7 +10,6 @@ export function requireCheckboxesToBeCheckedValidator(): ValidatorFn {
     const formGroup = ctrl as FormGroup;
 
     const controlsArray = Object.values(formGroup.controls);
-    console.log(controlsArray);
 
     return controlsArray.some((fc) => fc.value === true)
       ? null

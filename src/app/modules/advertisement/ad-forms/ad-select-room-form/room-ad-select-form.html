@@ -1,9 +1,9 @@
 <ng-container *ngIf="roomsData$ | async as rooms">
 
-    <div *ngIf="selectedAdProviders$ | async as providers">
-        Selected ad serices:
-      {{providers | json}}
-    </div>
+    <ng-container *ngIf="selectedAdProviders$ | async as providers">
+        Selected ad providers:
+        <div *ngFor="let provider of providers; let i = index">{{i +1}}. {{provider}}</div>
+    </ng-container>
 
     <form>
         <div *ngFor="let room of rooms">
@@ -25,7 +25,7 @@
                     <button
                         type="button"
                         mat-raised-button
-                        (click)="handlePublishAds(room.roomNumber)"
+                        (click)="handlePublishAds(room)"
                     >
                         Publish selected ads in rooms
                     </button>
