@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    CanActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     // redirectTo: 'rooms-list',
   },
   { path: '', redirectTo: 'rooms-list', pathMatch: 'full' },
