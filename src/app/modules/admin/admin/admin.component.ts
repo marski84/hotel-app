@@ -12,6 +12,7 @@ import { UntypedFormBuilder, Validators } from '@angular/forms';
       useValue: { showError: true },
     },
   ],
+  // standalone: true,
 })
 export class AdminComponent implements OnInit {
   firstFormGroup = this.fb.group({

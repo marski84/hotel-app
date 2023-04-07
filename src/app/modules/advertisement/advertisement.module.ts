@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { CoreModule } from '../core/core.module';
 import { MaterialModule } from '../material/material.module';
 import { AdFormContainerComponent } from './ad-form-container/ad-form-container.component';
