@@ -93,7 +93,7 @@ export class RoomsService extends AbstractApiHandlerService {
   }
 
   getData(): void {
-    const roomsData = window.localStorage.getItem('hotel-rooms');
+    const roomsData = window.localStorage.getItem('hotel-rooms'); // TODO: hotel-rooms => const lub enum
     if (roomsData) {
       this.data.next(JSON.parse(roomsData));
       return;

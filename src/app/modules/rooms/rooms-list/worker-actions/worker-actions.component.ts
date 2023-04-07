@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { RoomInterface } from '../../../shared/models/room.interface';
 import { RoomStateEnum } from '../../../shared/models/room-state.enum';
 
@@ -6,6 +13,7 @@ import { RoomStateEnum } from '../../../shared/models/room-state.enum';
   selector: 'app-worker-actions',
   templateUrl: './worker-actions.component.html',
   styleUrls: ['./worker-actions.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WorkerActionsComponent implements OnInit {
   constructor() {}
@@ -17,7 +25,27 @@ export class WorkerActionsComponent implements OnInit {
   @Output() roomStateChangeEmitted: EventEmitter<RoomInterface> =
     new EventEmitter<RoomInterface>();
 
-  ngOnInit(): void {}
+
+    get dupa() {
+console.log('test');
+return 1;
+    }
+
+  ngOnInit(): void {
+    // serwis.sub(res => this.dana  = res) // this.changeDetectionRef.markForCheck
+    // markForCheck vs detectChanges()
+    // treeshaking
+    // smart => container
+    // dump => wyswietlenie listy
+
+    // zone.js
+    // ngZone.runOutsideAngular(interval który dodaje miliion razy +1 900tyś wywołuje się changeDetection)
+  }
+
+  changeColor() {
+    // this.output.emit();
+//this.colorprzycisku = red;
+  }
 
   onRoomCheck() {
     this.room.markedForCheck = true;

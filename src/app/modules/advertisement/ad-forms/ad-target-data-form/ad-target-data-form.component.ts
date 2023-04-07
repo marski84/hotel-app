@@ -39,3 +39,6 @@ export class AdTargetDataFormComponent implements OnInit {
     this.formDataEmitted.emit(formValue);
   }
 }
+
+
+

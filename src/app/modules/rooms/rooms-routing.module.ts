@@ -7,7 +7,7 @@ const routes: Route[] = [
   { path: 'rooms-list', component: RoomsListComponent },
   {
     path: 'rooms-list/advertisement-form',
-    component: AdminComponent,
+    component: AdminComponent, // lazy loading | standaloneComponent +  guard
   },
 ];
 

@@ -1,10 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  Input,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RoomInterface } from '../../../shared/models/room.interface';
 import { Observable } from 'rxjs';
 import { AdvertisementService } from '../../advertisement.service';
@@ -26,17 +20,7 @@ export class AdRoomSelectFormComponent implements OnInit {
   }
 
   handlePublishAds(room: RoomInterface) {
-    // console.log(roomNumber);
     room.roomAds = this.adService.formData;
     console.log(room);
-
-    // this.adService.updateRoomAds(roomNumber);
   }
-
-  // handleSubmit() {
-  //   if (!this.formName.valid) {
-  //     return;
-  //   }
-  //   console.log(this.formName.value);
-  // }
 }

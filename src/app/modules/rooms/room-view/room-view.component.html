@@ -4,6 +4,7 @@
             <!-- TODO: [ngClass]="{markedForCheck: room.markedForCheck; notMarkedForCheck: !room.markedForCheck}" -->
             <div>Room number: {{room.roomNumber}}</div>
             <div
+                ngIf="room.markedForCheck"
                 [ngClass]="{markedForCheck: room.markedForCheck}"
                 *appUserRoleView="AuthLevel.WORKER"
             >
