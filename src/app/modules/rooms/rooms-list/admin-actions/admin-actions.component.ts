@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RoomStateEnum } from 'src/app/modules/shared/models/room-state.enum';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
 import { RoomInterface } from '../../../shared/models/room.interface';
 
 @Component({
@@ -18,7 +18,7 @@ export class AdminActionsComponent implements OnInit {
   });
 
   get roomStateCtrl() {
-    return this.roomStateForm.get('state') as FormControl;
+    return this.roomStateForm.get('state') as UntypedFormControl;
   }
 
   roomStateOptions = [
@@ -28,7 +28,7 @@ export class AdminActionsComponent implements OnInit {
     RoomStateEnum.RESERVED,
   ];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: UntypedFormBuilder) {}
 
   ngOnInit(): void {
     this.roomStateCtrl.setValue(this.room.roomState);

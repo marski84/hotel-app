@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
 import { RouteConfigLoadStart, Router } from '@angular/router';
 
 @Component({
@@ -14,11 +14,11 @@ export class AuthComponent implements OnInit, OnDestroy {
   });
 
   get passwordCtrl() {
-    return this.loginForm.get('password') as FormControl;
+    return this.loginForm.get('password') as UntypedFormControl;
   }
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private authService: AuthService,
     private router: Router
   ) {}

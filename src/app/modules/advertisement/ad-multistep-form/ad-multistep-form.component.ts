@@ -1,9 +1,9 @@
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Component, OnInit } from '@angular/core';
 import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 
@@ -48,43 +48,43 @@ export class AdMultistepFormComponent implements OnInit {
   );
 
   get adTitleCtrl() {
-    return this.basicAdData.get('adTitle') as FormControl;
+    return this.basicAdData.get('adTitle') as UntypedFormControl;
   }
 
   get adDescriptionCtrl() {
-    return this.basicAdData.get('adDescription') as FormControl;
+    return this.basicAdData.get('adDescription') as UntypedFormControl;
   }
 
   get campaignDurationStartDateCtrl() {
-    return this.basicAdData.get(['campaignDuration', 'start']) as FormControl;
+    return this.basicAdData.get(['campaignDuration', 'start']) as UntypedFormControl;
   }
 
   get campaignDurationEndDateCtrl() {
-    return this.basicAdData.get(['campaignDuration', 'end']) as FormControl;
+    return this.basicAdData.get(['campaignDuration', 'end']) as UntypedFormControl;
   }
 
   get adTargetCtrl() {
-    return this.targetAdServices as FormGroup;
+    return this.targetAdServices as UntypedFormGroup;
   }
 
   get googleCtrl() {
-    return this.targetAdServices.get('google') as FormControl;
+    return this.targetAdServices.get('google') as UntypedFormControl;
   }
   get bingCtrl() {
-    return this.targetAdServices.get('bing') as FormControl;
+    return this.targetAdServices.get('bing') as UntypedFormControl;
   }
   get amazonCtrl() {
-    return this.targetAdServices.get('amazon') as FormControl;
+    return this.targetAdServices.get('amazon') as UntypedFormControl;
   }
   get facebookCtrl() {
-    return this.targetAdServices.get('facebook') as FormControl;
+    return this.targetAdServices.get('facebook') as UntypedFormControl;
   }
   get bookingCtrl() {
-    return this.targetAdServices.get('booking') as FormControl;
+    return this.targetAdServices.get('booking') as UntypedFormControl;
   }
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private adService: AdvertisementService
   ) {}
   ngOnInit(): void {

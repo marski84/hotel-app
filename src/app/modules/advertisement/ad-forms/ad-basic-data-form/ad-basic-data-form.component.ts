@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-ad-basic-data-form',
@@ -7,27 +7,27 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./ad-basic-data-form.component.scss'],
 })
 export class AdBasicDataFormComponent implements OnInit {
-  @Input() formName!: FormGroup;
+  @Input() formName!: UntypedFormGroup;
   @Output() formDataEmitted = new EventEmitter<any>();
 
   get adTitleCtrl() {
-    return this.formName.get('adTitle') as FormControl;
+    return this.formName.get('adTitle') as UntypedFormControl;
   }
 
   get adDescriptionCtrl() {
-    return this.formName.get('adDescription') as FormControl;
+    return this.formName.get('adDescription') as UntypedFormControl;
   }
 
   get campaignDurationCtrl() {
-    return this.formName.get('campaignDuration') as FormGroup;
+    return this.formName.get('campaignDuration') as UntypedFormGroup;
   }
 
   get campaignDurationStartDateCtrl() {
-    return this.campaignDurationCtrl.get('start') as FormControl;
+    return this.campaignDurationCtrl.get('start') as UntypedFormControl;
   }
 
   get campaignDurationEndDateCtrl() {
-    return this.campaignDurationCtrl.get('end') as FormControl;
+    return this.campaignDurationCtrl.get('end') as UntypedFormControl;
   }
 
   constructor() {}
