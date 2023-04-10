@@ -10,9 +10,9 @@ export class AdBasicDataFormComponent implements OnInit {
   @Input() formName!: UntypedFormGroup;
   @Output() formDataEmitted = new EventEmitter<any>();
 
-  get adTitleCtrl() {
-    return this.formName.get('adTitle') as UntypedFormControl;
-  }
+  // get adTitleCtrl() {
+  //   return this.formName.get('adTitle') as UntypedFormControl;
+  // }
 
   get adDescriptionCtrl() {
     return this.formName.get('adDescription') as UntypedFormControl;

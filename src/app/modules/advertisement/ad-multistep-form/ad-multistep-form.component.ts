@@ -1,9 +1,9 @@
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Component, OnInit } from '@angular/core';
 import {
-  UntypedFormBuilder,
-  UntypedFormControl,
-  UntypedFormGroup,
+  FormControl,
+  FormGroup,
+  NonNullableFormBuilder,
   Validators,
 } from '@angular/forms';
 
@@ -47,44 +47,45 @@ export class AdMultistepFormComponent implements OnInit {
     { validators: [requireCheckboxesToBeCheckedValidator()] }
   );
 
-  get adTitleCtrl() {
-    return this.basicAdData.get('adTitle') as UntypedFormControl;
-  }
+  // get adTitleCtrl() {
+  //   return this.basicAdData.get('adTitle') as FormControl;
+  // }
 
   get adDescriptionCtrl() {
-    return this.basicAdData.get('adDescription') as UntypedFormControl;
+    return this.basicAdData.get('adDescription') as FormControl;
   }
 
   get campaignDurationStartDateCtrl() {
-    return this.basicAdData.get(['campaignDuration', 'start']) as UntypedFormControl;
+    return this.basicAdData.get(['campaignDuration', 'start']) as FormControl;
   }
 
   get campaignDurationEndDateCtrl() {
-    return this.basicAdData.get(['campaignDuration', 'end']) as UntypedFormControl;
+    return this.basicAdData.get(['campaignDuration', 'end']) as FormControl;
   }
 
   get adTargetCtrl() {
-    return this.targetAdServices as UntypedFormGroup;
+    return this.targetAdServices as FormGroup;
   }
 
   get googleCtrl() {
-    return this.targetAdServices.get('google') as UntypedFormControl;
+    return this.targetAdServices.get('google') as FormControl;
   }
   get bingCtrl() {
-    return this.targetAdServices.get('bing') as UntypedFormControl;
+    return this.targetAdServices.get('bing') as FormControl;
   }
   get amazonCtrl() {
-    return this.targetAdServices.get('amazon') as UntypedFormControl;
+    return this.targetAdServices.get('amazon') as FormControl;
   }
   get facebookCtrl() {
-    return this.targetAdServices.get('facebook') as UntypedFormControl;
+    return this.targetAdServices.get('facebook') as FormControl;
   }
   get bookingCtrl() {
-    return this.targetAdServices.get('booking') as UntypedFormControl;
+    return this.targetAdServices.get('booking') as FormControl;
   }
 
   constructor(
-    private fb: UntypedFormBuilder,
+    private fb: NonNullableFormBuilder,
+    // UntypedFormBuilder,
     private adService: AdvertisementService
   ) {}
   ngOnInit(): void {

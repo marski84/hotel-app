@@ -5,7 +5,10 @@ import { AdvertisementModule } from '../advertisement/advertisement.module';
 
 @NgModule({
   declarations: [AdminComponent],
-  imports: [CoreModule, AdvertisementModule],
+  imports: [
+    CoreModule,
+    // AdvertisementModule
+  ],
   exports: [AdminComponent],
 })
 export class AdminModule {}
