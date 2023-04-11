@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuardService } from '../auth/auth-guard.service';
+import { AuthGuardFn } from '../auth/auth/auth-guard.fn';
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    canActivate: [AuthGuardService],
+    canActivate: [AuthGuardFn],
     // redirectTo: 'rooms-list',
   },
   { path: '', redirectTo: 'rooms-list', pathMatch: 'full' },
@@ -15,7 +15,7 @@ const routes: Routes = [
     path: '',
     loadChildren: () =>
       import('../rooms/rooms.module').then((m) => m.RoomsModule),
-    canActivate: [AuthGuardService],
+    canActivate: [AuthGuardFn],
   },
 ];
 

@@ -3,7 +3,6 @@ import { AuthComponent } from './auth/auth.component';
 import { AuthService } from './auth.service';
 import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
-import { AuthGuardService } from './auth-guard.service';
 
 @NgModule({
   declarations: [AuthComponent],
@@ -11,7 +10,6 @@ import { AuthGuardService } from './auth-guard.service';
   exports: [AuthComponent],
   providers: [
     AuthService,
-    AuthGuardService,
     { provide: 'adminPassword', useValue: 'admin' },
     { provide: 'workerPassword', useValue: 'worker' },
   ],
