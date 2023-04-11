@@ -17,7 +17,12 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () =>
-      import('./modules/admin/admin.module').then((m) => m.AdminModule),
+      import('./modules/admin/admin/admin.component').then(
+        (m) => m.AdminComponent
+      ),
+
+    // loadChildren: () =>
+    // import('./modules/admin/admin.module').then((m) => m.AdminModule),
     data: {
       preloaded: true,
     },

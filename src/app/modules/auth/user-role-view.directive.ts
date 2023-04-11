@@ -1,10 +1,11 @@
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from './auth.service';
 import { filter, map, tap } from 'rxjs';
-import { AuthLevel } from '../../shared/models/auth-level.enum';
+import { AuthLevel } from '../shared/models/auth-level.enum';
 
 @Directive({
   selector: '[appUserRoleView]',
+  standalone: true,
 })
 export class UserRoleViewDirective {
   private userPermissionLevel!: AuthLevel;
@@ -35,7 +36,6 @@ export class UserRoleViewDirective {
   }
 
   private checkUserPermissions(AuthLevel: string | null) {
-    console.log(AuthLevel);
     return AuthLevel === this.userPermissionLevel;
   }
 

@@ -11,12 +11,11 @@ import {
 } from '@angular/router';
 import { AuthService } from './auth.service';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuardService implements CanActivate {
+export class AuthGuardService {
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -40,22 +39,4 @@ export class AuthGuardService implements CanActivate {
     }
     return true;
   }
-
-  // canLoad(route: Route): boolean {
-  //   if (
-  //     route.path === 'dashboard' &&
-  //     this.authLevelToken === this.adminPriviliges
-  //   ) {
-  //     console.log('canload');
-
-  //     return true;
-  //   }
-
-  //   console.log('canload false');
-
-  //   return false;
-  // }
 }
-
-// czyJestZalogowany - /login
-// czyJestAdmin - /dashboard

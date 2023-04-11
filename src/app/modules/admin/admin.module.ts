@@ -4,11 +4,11 @@ import { AdminComponent } from './admin/admin.component';
 import { AdvertisementModule } from '../advertisement/advertisement.module';
 
 @NgModule({
-  declarations: [AdminComponent],
+  declarations: [],
   imports: [
     CoreModule,
     // AdvertisementModule
   ],
-  exports: [AdminComponent],
+  exports: [],
 })
 export class AdminModule {}
