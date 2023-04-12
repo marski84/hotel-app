@@ -1,5 +1,5 @@
 <form
-    [formGroup]="formName"
+    [formGroup]="formGroup"
     (submit)="handleSubmit()"
 >
 
@@ -23,7 +23,7 @@
         <mat-checkbox [formControl]="bookingCtrl">Booking</mat-checkbox>
     </p>
 
-    <mat-error *ngIf="formName.hasError('requireOneCheckboxToBeChecked')">You must select at least one option</mat-error>
+    <mat-error *ngIf="formGroup.hasError('requireOneCheckboxToBeChecked')">You must select at least one option</mat-error>
 
     <app-multi-step-form-navigation></app-multi-step-form-navigation>
 

@@ -6,7 +6,7 @@
 
         <ng-template matStepLabel>Fill ad basic data</ng-template>
         <app-ad-basic-data-form
-            [formName]="basicAdData"
+            [formGroup]="basicAdData"
             (formDataEmitted)="handleFormDataSubmit($event)"
         ></app-ad-basic-data-form>
 
@@ -18,7 +18,7 @@
         <ng-template matStepLabel>Select ad services</ng-template>
 
         <app-ad-target-data-form
-            [formName]="targetAdServices"
+            [formGroup]="targetAdServices"
             (formDataEmitted)="handleFormDataSubmit($event)"
         ></app-ad-target-data-form>
 
@@ -54,6 +54,13 @@
                 (click)="stepper.reset()"
             >
                 Reset
+            </button>
+
+            <button
+                *ngIf="basicAdData.valid && targetAdServices.valid"
+                mat-button
+            >
+                Submit
             </button>
         </div>
 

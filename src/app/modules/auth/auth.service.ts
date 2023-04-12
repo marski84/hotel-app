@@ -1,11 +1,5 @@
-import { Inject, Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  RouterStateSnapshot,
-  UrlTree,
-} from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { of } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { ApiHandlerService } from './api-handler.service';
 import { AuthLevel } from '../shared/models/auth-level.enum';

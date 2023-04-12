@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RoomInterface } from '../../../shared/models/room.interface';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { AdvertisementService } from '../../advertisement.service';
 
 @Component({
@@ -15,12 +15,14 @@ export class AdRoomSelectFormComponent implements OnInit {
   constructor(private adService: AdvertisementService) {}
 
   ngOnInit(): void {
-    this.adService.formData.filter((data) => data.stepNumber === 2);
-    console.log(this.adService.formData);
+    this.selectedAdProviders$
+      .pipe(tap((value) => console.log(value)))
+      .subscribe();
   }
 
   handlePublishAds(room: RoomInterface) {
     room.roomAds = this.adService.formData;
     console.log(room);
+    this.adService.updateRoomAds(room);
   }
 }

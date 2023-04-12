@@ -7,7 +7,7 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
   styleUrls: ['./ad-basic-data-form.component.scss'],
 })
 export class AdBasicDataFormComponent implements OnInit {
-  @Input() formName!: UntypedFormGroup;
+  @Input() formGroup!: UntypedFormGroup;
   @Output() formDataEmitted = new EventEmitter<any>();
 
   // get adTitleCtrl() {
@@ -15,11 +15,11 @@ export class AdBasicDataFormComponent implements OnInit {
   // }
 
   get adDescriptionCtrl() {
-    return this.formName.get('adDescription') as UntypedFormControl;
+    return this.formGroup.get('adDescription') as UntypedFormControl;
   }
 
   get campaignDurationCtrl() {
-    return this.formName.get('campaignDuration') as UntypedFormGroup;
+    return this.formGroup.get('campaignDuration') as UntypedFormGroup;
   }
 
   get campaignDurationStartDateCtrl() {
@@ -35,10 +35,10 @@ export class AdBasicDataFormComponent implements OnInit {
   ngOnInit(): void {}
 
   handleSubmit() {
-    if (!this.formName.valid) {
+    if (!this.formGroup.valid) {
       return;
     }
-    const formValue = this.formName.value;
+    const formValue = this.formGroup.value;
     formValue.stepNumber = 1;
     this.formDataEmitted.emit(formValue);
   }

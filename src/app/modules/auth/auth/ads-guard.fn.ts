@@ -1,6 +1,6 @@
 import { CanActivateFn, Router, UrlTree } from '@angular/router';
 import { inject } from '@angular/core';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth.service';
 
 export const AdsGuardFn: CanActivateFn = (): boolean | UrlTree => {

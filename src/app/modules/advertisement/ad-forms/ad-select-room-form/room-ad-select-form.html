@@ -1,44 +1,49 @@
 <ng-container *ngIf="roomsData$ | async as rooms">
 
-    <ng-container *ngIf="selectedAdProviders$ | async as providers">
-        Selected ad providers:
-        <div *ngFor="let provider of providers; let i = index">{{i +1}}. {{provider}}</div>
-    </ng-container>
-
-    <form>
-        <div *ngFor="let room of rooms">
-
-            <mat-card>
-                <mat-card-header>
-                    <mat-card-title>
-
-                        <div>Room number: {{room.roomNumber}}</div>
-
-                    </mat-card-title>
-                </mat-card-header>
-
-                <mat-card-content>
-                    <div>Room state: {{room.roomState}}</div>
-                </mat-card-content>
-
-                <mat-card-actions>
-                    <button
-                        [disabled]=""
-                        type="button"
-                        mat-raised-button
-                        (click)="handlePublishAds(room)"
-                    >
-                        Publish selected ads in rooms
-                    </button>
-
-                </mat-card-actions>
-            </mat-card>
-
-            <mat-divider></mat-divider>
+    <ng-container *ngIf="(selectedAdProviders$ | async) as providers">
+        <div>
+            Selected ad providers:
+            <div *ngFor="let provider of providers; let i = index">{{i +1}}. {{provider}}</div>
+            <div *ngIf="providers.length === 0">No ad providers were selected!!</div>
 
         </div>
 
-        <app-multi-step-form-navigation></app-multi-step-form-navigation>
-    </form>
+        <form>
+            <div *ngFor="let room of rooms">
+
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>
+
+                            <div>Room number: {{room.roomNumber}}</div>
+
+                        </mat-card-title>
+                    </mat-card-header>
+
+                    <mat-card-content>
+                        <div>Room state: {{room.roomState}}</div>
+                        <div *ngIf="room.roomAds.length>0">{{room.roomAds | json}}</div>
+                    </mat-card-content>
+
+                    <mat-card-actions>
+                        <button
+                            [disabled]="providers.length === 0"
+                            type="button"
+                            mat-raised-button
+                            (click)="handlePublishAds(room)"
+                        >
+                            Publish selected ads in rooms
+                        </button>
+
+                    </mat-card-actions>
+                </mat-card>
+
+                <mat-divider></mat-divider>
+
+            </div>
+
+            <app-multi-step-form-navigation></app-multi-step-form-navigation>
+        </form>
+    </ng-container>
 
 </ng-container>

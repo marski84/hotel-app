@@ -16,8 +16,7 @@ export class AdvertisementService {
     this.roomsList
   );
 
-  readonly selectedAdProviders$: BehaviorSubject<string[]> =
-    new BehaviorSubject(['']);
+  readonly selectedAdProviders$: BehaviorSubject<any> = new BehaviorSubject([]);
 
   constructor(private roomService: RoomsService) {}
 
@@ -32,8 +31,16 @@ export class AdvertisementService {
       .subscribe();
   }
 
-  updateRoomAds(roomNumber: string) {
-    console.log(roomNumber);
+  updateRoomAds(room: RoomInterface) {
+    if (!room) {
+      return;
+    }
+    console.log(room);
+    const roomIndex = this.roomsList.findIndex(
+      (roomInList) => roomInList.roomNumber === room.roomNumber
+    );
+    this.roomService[roomIndex] = room;
+    this.roomsList$.next(this.roomsList);
   }
 
   private handleFilterRoomList(roomList: RoomInterface[]) {
@@ -52,8 +59,9 @@ export class AdvertisementService {
       const selectedAds = Object.keys(formData).filter(
         (key) => formData[key] === true
       );
-
       this.selectedAdProviders$.next(selectedAds);
+    } else {
+      // this.selectedAdProviders$.next([]);
     }
 
     const dataIndex = this.findFormData(formData);
