@@ -107,4 +107,9 @@ export class AdMultistepFormComponent implements OnInit {
     console.log(formData);
     this.adService.handleFormSubmit(formData);
   }
+
+  handleRoomDataReset() {
+    console.log('reset');
+    this.adService.resetRoomsData();
+  }
 }

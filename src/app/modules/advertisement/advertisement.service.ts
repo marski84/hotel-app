@@ -89,7 +89,9 @@ export class AdvertisementService {
     this.formData[dataIndex] = formData;
   }
 
-  updateFormValidity() {
-    
+  resetRoomsData() {
+    this.roomsList = [];
+    this.getRoomsData();
+    this.selectedAdProviders$.next([]);
   }
 }
