@@ -10,6 +10,7 @@ import {
 import { AdvertisementService } from '../advertisement.service';
 import { requireCheckboxesToBeCheckedValidator } from '../ad-forms/custom-validators/requireCheckboxesToBeCheckedValidator';
 import { IadBasicDataForm } from '../ad-forms/models/IadBasicData.interface';
+import { ItargetAdServices } from '../ad-forms/models/ItargetAdServices.interface';
 
 @Component({
   selector: 'app-ad-multistep-form',
@@ -37,7 +38,7 @@ export class AdMultistepFormComponent implements OnInit {
     }),
   });
 
-  targetAdServices = this.fb.group(
+  targetAdServices: FormGroup<ItargetAdServices> = this.fb.group(
     {
       google: [false],
       bing: [false],
@@ -49,42 +50,6 @@ export class AdMultistepFormComponent implements OnInit {
   );
 
   roomAdSelection = this.fb.group({});
-
-  // get adTitleCtrl() {
-  //   return this.basicAdData.get('adTitle') as FormControl;
-  // }
-
-  get adDescriptionCtrl() {
-    return this.basicAdData.get('adDescription') as FormControl;
-  }
-
-  get campaignDurationStartDateCtrl() {
-    return this.basicAdData.get(['campaignDuration', 'start']) as FormControl;
-  }
-
-  get campaignDurationEndDateCtrl() {
-    return this.basicAdData.get(['campaignDuration', 'end']) as FormControl;
-  }
-
-  get adTargetCtrl() {
-    return this.targetAdServices as FormGroup;
-  }
-
-  get googleCtrl() {
-    return this.targetAdServices.get('google') as FormControl;
-  }
-  get bingCtrl() {
-    return this.targetAdServices.get('bing') as FormControl;
-  }
-  get amazonCtrl() {
-    return this.targetAdServices.get('amazon') as FormControl;
-  }
-  get facebookCtrl() {
-    return this.targetAdServices.get('facebook') as FormControl;
-  }
-  get bookingCtrl() {
-    return this.targetAdServices.get('booking') as FormControl;
-  }
 
   get roomAdSelectionCtrl() {
     return this.roomAdSelection as FormGroup;

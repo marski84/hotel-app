@@ -5,27 +5,25 @@
 
     <mat-label>Select target services</mat-label>
     <p>
-        <mat-checkbox [formControl]="googleCtrl">Google</mat-checkbox>
+        <mat-checkbox [formControl]="formGroup.controls.google">Google</mat-checkbox>
     </p>
 
     <p>
-        <mat-checkbox [formControl]="bingCtrl">Bing</mat-checkbox>
+        <mat-checkbox [formControl]="formGroup.controls.bing">Bing</mat-checkbox>
     </p>
     <p>
-        <mat-checkbox [formControl]="amazonCtrl">Amazon</mat-checkbox>
+        <mat-checkbox [formControl]="formGroup.controls.amazon">Amazon</mat-checkbox>
     </p>
 
     <P>
-        <mat-checkbox [formControl]="facebookCtrl">Facebook</mat-checkbox>
+        <mat-checkbox [formControl]="formGroup.controls.facebook">Facebook</mat-checkbox>
     </P>
 
     <p>
-        <mat-checkbox [formControl]="bookingCtrl">Booking</mat-checkbox>
+        <mat-checkbox [formControl]="formGroup.controls.booking">Booking</mat-checkbox>
     </p>
 
     <mat-error *ngIf="formGroup.hasError('requireOneCheckboxToBeChecked')">You must select at least one option</mat-error>
-
-    
 
     <app-multi-step-form-navigation [canNavigateForward]="formGroup.valid"></app-multi-step-form-navigation>
 
