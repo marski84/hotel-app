@@ -13,6 +13,7 @@
                 formControlName="adTitle"
                 placeholder="Advertisement title"
             >
+            <mat-error>Field is required</mat-error>
         </mat-form-field>
     </div>
     <div>
@@ -25,6 +26,7 @@
                 [formControl]="adDescriptionCtrl"
                 placeholder="Description"
             >
+            <mat-error>Field is required</mat-error>
         </mat-form-field>
     </div>
     <div>
@@ -59,8 +61,12 @@
 
             <mat-error *ngIf="campaignDurationStartDateCtrl.hasError('matStartDateInvalid')">Invalid start date</mat-error>
             <mat-error *ngIf="campaignDurationEndDateCtrl.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+            <mat-error>Field is required</mat-error>
         </mat-form-field>
     </div>
 
-    <app-multi-step-form-navigation [canNavigateBack]="false"></app-multi-step-form-navigation>
+    <app-multi-step-form-navigation
+        [canNavigateBack]="false"
+        [canNavigateForward]="formGroup.valid"
+    ></app-multi-step-form-navigation>
 </form>

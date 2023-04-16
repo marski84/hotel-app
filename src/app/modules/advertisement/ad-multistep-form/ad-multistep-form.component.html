@@ -23,15 +23,18 @@
         ></app-ad-target-data-form>
 
     </mat-step>
-    <mat-step>
+    <!-- select rooms to publish ad -->
+    <mat-step
+        errorMessage="Ad data is required!"
+        state="false"
+    >
         <ng-template matStepLabel>Add advertisement to room</ng-template>
         <p>
             Select rooms in which you want ad to be visible
         </p>
-
         <ng-template matStepLabel>Fill out your address</ng-template>
 
-        <app-room-ad-select-form></app-room-ad-select-form>
+        <app-room-ad-select-form [formGroup]="roomAdSelection"></app-room-ad-select-form>
         <div>
 
             <button
@@ -42,7 +45,7 @@
             </button>
         </div>
     </mat-step>
-
+    <!-- confirm ads publish -->
     <mat-step>
         <ng-template matStepLabel>Done</ng-template>
         <p>You are now done.</p>

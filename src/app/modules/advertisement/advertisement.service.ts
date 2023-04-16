@@ -60,8 +60,6 @@ export class AdvertisementService {
         (key) => formData[key] === true
       );
       this.selectedAdProviders$.next(selectedAds);
-    } else {
-      // this.selectedAdProviders$.next([]);
     }
 
     const dataIndex = this.findFormData(formData);
@@ -89,5 +87,9 @@ export class AdvertisementService {
     dataIndex: number
   ) {
     this.formData[dataIndex] = formData;
+  }
+
+  updateFormValidity() {
+    
   }
 }

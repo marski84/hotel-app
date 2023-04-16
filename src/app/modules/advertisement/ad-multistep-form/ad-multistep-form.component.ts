@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 
 import { AdvertisementService } from '../advertisement.service';
-import { requireCheckboxesToBeCheckedValidator } from '../ad-forms/ad-target-data-form/requireCheckboxesToBeCheckedValidator';
+import { requireCheckboxesToBeCheckedValidator } from '../ad-forms/custom-validators/requireCheckboxesToBeCheckedValidator';
 
 @Component({
   selector: 'app-ad-multistep-form',
@@ -47,6 +47,8 @@ export class AdMultistepFormComponent implements OnInit {
     { validators: [requireCheckboxesToBeCheckedValidator()] }
   );
 
+  roomAdSelection = this.fb.group({});
+
   // get adTitleCtrl() {
   //   return this.basicAdData.get('adTitle') as FormControl;
   // }
@@ -81,6 +83,10 @@ export class AdMultistepFormComponent implements OnInit {
   }
   get bookingCtrl() {
     return this.targetAdServices.get('booking') as FormControl;
+  }
+
+  get roomAdSelectionCtrl() {
+    return this.roomAdSelection as FormGroup;
   }
 
   constructor(
