@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
+import { FormGroup, UntypedFormControl } from '@angular/forms';
+import { IadBasicDataForm } from '../models/IadBasicData.interface';
 
 @Component({
   selector: 'app-ad-basic-data-form',
@@ -7,28 +9,8 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
   styleUrls: ['./ad-basic-data-form.component.scss'],
 })
 export class AdBasicDataFormComponent implements OnInit {
-  @Input() formGroup!: UntypedFormGroup;
+  @Input() formGroup!: FormGroup<IadBasicDataForm>;
   @Output() formDataEmitted = new EventEmitter<any>();
-
-  // get adTitleCtrl() {
-  //   return this.formName.get('adTitle') as UntypedFormControl;
-  // }
-
-  get adDescriptionCtrl() {
-    return this.formGroup.get('adDescription') as UntypedFormControl;
-  }
-
-  get campaignDurationCtrl() {
-    return this.formGroup.get('campaignDuration') as UntypedFormGroup;
-  }
-
-  get campaignDurationStartDateCtrl() {
-    return this.campaignDurationCtrl.get('start') as UntypedFormControl;
-  }
-
-  get campaignDurationEndDateCtrl() {
-    return this.campaignDurationCtrl.get('end') as UntypedFormControl;
-  }
 
   constructor() {}
 

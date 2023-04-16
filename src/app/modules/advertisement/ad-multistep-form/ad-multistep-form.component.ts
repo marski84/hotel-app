@@ -9,6 +9,7 @@ import {
 
 import { AdvertisementService } from '../advertisement.service';
 import { requireCheckboxesToBeCheckedValidator } from '../ad-forms/custom-validators/requireCheckboxesToBeCheckedValidator';
+import { IadBasicDataForm } from '../ad-forms/models/IadBasicData.interface';
 
 @Component({
   selector: 'app-ad-multistep-form',
@@ -26,7 +27,7 @@ export class AdMultistepFormComponent implements OnInit {
 
   roomsList!: any;
 
-  basicAdData = this.fb.group({
+  basicAdData: FormGroup<IadBasicDataForm> = this.fb.group({
     adTitle: ['', Validators.required],
     adDescription: ['', Validators.required],
 
@@ -91,7 +92,6 @@ export class AdMultistepFormComponent implements OnInit {
 
   constructor(
     private fb: NonNullableFormBuilder,
-    // UntypedFormBuilder,
     private adService: AdvertisementService
   ) {}
   ngOnInit(): void {

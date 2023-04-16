@@ -10,7 +10,7 @@
             <mat-label>Advertisement title</mat-label>
             <input
                 matInput
-                formControlName="adTitle"
+                [formControl]="formGroup.controls.adTitle"
                 placeholder="Advertisement title"
             >
             <mat-error>Field is required</mat-error>
@@ -23,7 +23,7 @@
             <mat-label>Description</mat-label>
             <input
                 matInput
-                [formControl]="adDescriptionCtrl"
+                [formControl]="formGroup.controls.adDescription"
                 placeholder="Description"
             >
             <mat-error>Field is required</mat-error>
@@ -35,19 +35,19 @@
 
             <mat-label>Advertisement time range</mat-label>
             <mat-date-range-input
-                [formGroup]="campaignDurationCtrl"
+                [formGroup]="formGroup.controls.campaignDuration"
                 [rangePicker]="picker"
             >
                 <input
                     appDatepickerMask
                     matStartDate
-                    [formControl]="campaignDurationStartDateCtrl"
+                    [formControl]="formGroup.controls.campaignDuration.controls.start"
                     placeholder="Start date"
                 >
                 <input
                     appDatepickerMask
                     matEndDate
-                    [formControl]="campaignDurationEndDateCtrl"
+                    [formControl]="formGroup.controls.campaignDuration.controls.end"
                     placeholder="End date"
                 >
             </mat-date-range-input>
@@ -59,8 +59,8 @@
 
             <mat-date-range-picker #picker></mat-date-range-picker>
 
-            <mat-error *ngIf="campaignDurationStartDateCtrl.hasError('matStartDateInvalid')">Invalid start date</mat-error>
-            <mat-error *ngIf="campaignDurationEndDateCtrl.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+            <mat-error *ngIf="formGroup.controls.campaignDuration">Invalid start date</mat-error>
+            <mat-error *ngIf="formGroup.controls.campaignDuration.hasError('matEndDateInvalid')">Invalid end date</mat-error>
             <mat-error>Field is required</mat-error>
         </mat-form-field>
     </div>

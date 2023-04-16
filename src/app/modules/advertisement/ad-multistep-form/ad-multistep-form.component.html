@@ -1,9 +1,9 @@
 <mat-stepper #stepper>
+    <!-- basic ad data form -->
     <mat-step
         [stepControl]="basicAdData"
         errorMessage="Ad data is required!"
     >
-
         <ng-template matStepLabel>Fill ad basic data</ng-template>
         <app-ad-basic-data-form
             [formGroup]="basicAdData"
@@ -11,6 +11,7 @@
         ></app-ad-basic-data-form>
 
     </mat-step>
+    <!-- handle select ad services form -->
     <mat-step
         [stepControl]="targetAdServices"
         errorMessage="Step is requiered"
