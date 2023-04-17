@@ -12,7 +12,11 @@ import { ItargetAdServices } from './ad-forms/models/ItargetAdServices.interface
 export class AdvertisementService {
   private roomsList!: RoomInterface[];
 
-  formData: Partial<{ stepNumber: number }>[] = [];
+  formData: {
+    stepNumber: number;
+    adBasicData?: IadBasicData;
+    providers?: ItargetAdServices;
+  }[] = [];
 
   readonly roomsList$: BehaviorSubject<RoomInterface[]> = new BehaviorSubject(
     this.roomsList
@@ -68,8 +72,6 @@ export class AdvertisementService {
         (key) => providers[key] === true
       );
 
-      console.log(selectedAds);
-
       this.selectedAdProviders$.next(selectedAds);
     }
 
@@ -81,8 +83,6 @@ export class AdvertisementService {
     }
 
     this.editFormData(formData, dataIndex);
-
-    console.log(this.formData);
   }
 
   private findFormData(formData: Partial<{ stepNumber: number }>) {
@@ -94,7 +94,11 @@ export class AdvertisementService {
   }
 
   private editFormData(
-    formData: Partial<{ stepNumber: number }>,
+    formData: {
+      stepNumber: number;
+      adBasicData?: IadBasicData;
+      providers?: ItargetAdServices;
+    },
     dataIndex: number
   ) {
     this.formData[dataIndex] = formData;

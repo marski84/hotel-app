@@ -1,3 +1,7 @@
-<p>ad-confirm-form works!</p>
-
+<ng-container *ngIf="(roomsWithAds$ | async)as roomsList">
+    <div *ngFor="let room of roomsList">
+        <div>{{room.roomNumber}}</div>
+        <div>{{room.roomAds | json}}</div>
+    </div>
+</ng-container>
 <app-multi-step-form-navigation [canNavigateForward]="false"></app-multi-step-form-navigation>
