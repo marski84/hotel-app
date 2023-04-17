@@ -1,59 +1,57 @@
-<form [formGroup]="formGroup">
-    <ng-container *ngIf="roomsData$ | async as rooms">
+<ng-container *ngIf="roomsData$ | async as rooms">
 
-        <ng-container *ngIf="(selectedAdProviders$ | async) as providers">
-            <div>
-                Selected ad providers:
-                <div *ngFor="let provider of providers; let i = index">{{i +1}}. {{provider}}</div>
-                <div *ngIf="providers.length === 0">No ad providers were selected!!</div>
+    <ng-container *ngIf="(selectedAdProviders$ | async) as providers">
+        <div>
+            Selected ad providers:
+            <div *ngFor="let provider of providers; let i = index">{{i +1}}. {{provider}}</div>
+            <div *ngIf="providers.length === 0">No ad providers were selected!!</div>
+
+        </div>
+
+        <form>
+            <div *ngFor="let room of rooms">
+
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>
+
+                            <div>Room number: {{room.roomNumber}}</div>
+
+                        </mat-card-title>
+                    </mat-card-header>
+
+                    <mat-card-content>
+                        <div>Room state: {{room.roomState}}</div>
+                        <div *ngIf="room.roomAds.length>0">
+                            <div>
+                                Campaign name: {{room.roomAds[0].adBasicData.adTitle}}
+                            </div>
+                            <div>
+                                Campaing Description: {{room.roomAds[0].adBasicData.adDescription}}
+                            </div>
+                        </div>
+                    </mat-card-content>
+
+                    <mat-card-actions>
+                        <button
+                            [disabled]="providers.length === 0"
+                            type="button"
+                            mat-raised-button
+                            (click)="handlePublishAds(room)"
+                        >
+                            Publish selected ads in rooms
+                        </button>
+
+                    </mat-card-actions>
+                </mat-card>
+
+                <mat-divider></mat-divider>
 
             </div>
 
-            <form>
-                <div *ngFor="let room of rooms">
+            <app-multi-step-form-navigation [canNavigateForward]="providers.length > 0 && roomAdPresent"></app-multi-step-form-navigation>
 
-                    <mat-card>
-                        <mat-card-header>
-                            <mat-card-title>
-
-                                <div>Room number: {{room.roomNumber}}</div>
-
-                            </mat-card-title>
-                        </mat-card-header>
-
-                        <mat-card-content>
-                            <div>Room state: {{room.roomState}}</div>
-                            <div *ngIf="room.roomAds.length>0">
-                                <div>
-                                    Campaign name: {{room.roomAds[0].adBasicData.adTitle}}
-                                </div>
-                                <div>
-                                    Campaing Description: {{room.roomAds[0].adBasicData.adDescription}}
-                                </div>
-                            </div>
-                        </mat-card-content>
-
-                        <mat-card-actions>
-                            <button
-                                [disabled]="providers.length === 0"
-                                type="button"
-                                mat-raised-button
-                                (click)="handlePublishAds(room)"
-                            >
-                                Publish selected ads in rooms
-                            </button>
-
-                        </mat-card-actions>
-                    </mat-card>
-
-                    <mat-divider></mat-divider>
-
-                </div>
-
-                <app-multi-step-form-navigation [canNavigateForward]="providers.length > 0 && roomAdPresent"></app-multi-step-form-navigation>
-
-            </form>
-        </ng-container>
-
+        </form>
     </ng-container>
-</form>
+
+</ng-container>

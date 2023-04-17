@@ -31,4 +31,6 @@ export class AdRoomSelectFormComponent implements OnInit {
       this.roomAdPresent = true;
     }
   }
+
+  handleSubmit() {}
 }
