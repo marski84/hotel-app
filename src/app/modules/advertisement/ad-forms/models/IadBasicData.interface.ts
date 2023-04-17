@@ -1,12 +1,9 @@
-import { FormControl, FormGroup } from '@angular/forms';
-export interface IadBasicDataForm {
-  adTitle: FormControl<string>;
-  adDescription: FormControl<string>;
+export interface IadBasicData {
+  adTitle: string;
+  adDescription: string;
 
-  campaignDuration: FormGroup<{
-    start: FormControl<string>;
-    end: FormControl<string>;
-  }>;
-
-  stepNumber?: any;
+  campaignDuration: {
+    start: string;
+    end: string;
+  };
 }

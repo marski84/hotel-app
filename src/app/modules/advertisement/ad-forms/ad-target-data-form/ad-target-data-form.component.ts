@@ -4,7 +4,7 @@ import {
   UntypedFormGroup,
   FormGroup,
 } from '@angular/forms';
-import { ItargetAdServices } from '../models/ItargetAdServices.interface';
+import { ItargetAdServicesForm } from '../models/ItargetAdServicesForm.interface';
 
 @Component({
   selector: 'app-ad-target-data-form',
@@ -12,7 +12,7 @@ import { ItargetAdServices } from '../models/ItargetAdServices.interface';
   styleUrls: ['./ad-target-data-form.component.scss'],
 })
 export class AdTargetDataFormComponent implements OnInit {
-  @Input() formGroup!: FormGroup<ItargetAdServices>;
+  @Input() formGroup!: FormGroup<ItargetAdServicesForm>;
   @Output() formDataEmitted = new EventEmitter<any>();
 
   constructor() {}
@@ -23,8 +23,11 @@ export class AdTargetDataFormComponent implements OnInit {
     // if (!this.formName.valid) {
     //   return;
     // }
+
     const formValue = this.formGroup.value;
-    formValue.stepNumber = 2;
-    this.formDataEmitted.emit(formValue);
+
+    const adServices = new Object({ stepNumber: 2, providers: formValue });
+
+    this.formDataEmitted.emit(adServices);
   }
 }

@@ -49,9 +49,12 @@
     </mat-step>
     <!-- confirm ads publish -->
     <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        <p>You are now done.</p>
+        <ng-template matStepLabel>Confirm your choice</ng-template>
+        <p>
+            In order to publish ads in rooms confirm your selectin
+        </p>
         <div>
+            <app-ad-confirm-form></app-ad-confirm-form>
 
             <app-multi-step-form-navigation [canNavigateForward]="false"></app-multi-step-form-navigation>
             <button

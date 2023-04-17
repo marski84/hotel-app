@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormGroup, UntypedFormControl } from '@angular/forms';
-import { IadBasicDataForm } from '../models/IadBasicData.interface';
+import { IadBasicDataForm } from '../models/IadBasicDataForm.interface';
 
 @Component({
   selector: 'app-ad-basic-data-form',
@@ -21,7 +21,8 @@ export class AdBasicDataFormComponent implements OnInit {
       return;
     }
     const formValue = this.formGroup.value;
-    formValue.stepNumber = 1;
-    this.formDataEmitted.emit(formValue);
+
+    const adBasicData = new Object({ stepNumber: 1, adBasicData: formValue });
+    this.formDataEmitted.emit(adBasicData);
   }
 }

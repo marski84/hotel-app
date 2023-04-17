@@ -9,8 +9,10 @@ import {
 
 import { AdvertisementService } from '../advertisement.service';
 import { requireCheckboxesToBeCheckedValidator } from '../ad-forms/custom-validators/requireCheckboxesToBeCheckedValidator';
-import { IadBasicDataForm } from '../ad-forms/models/IadBasicData.interface';
+import { IadBasicDataForm } from '../ad-forms/models/IadBasicDataForm.interface';
+import { IadBasicData } from '../ad-forms/models/IadBasicData.interface';
 import { ItargetAdServices } from '../ad-forms/models/ItargetAdServices.interface';
+import { ItargetAdServicesForm } from '../ad-forms/models/ItargetAdServicesForm.interface';
 
 @Component({
   selector: 'app-ad-multistep-form',
@@ -38,7 +40,7 @@ export class AdMultistepFormComponent implements OnInit {
     }),
   });
 
-  targetAdServices: FormGroup<ItargetAdServices> = this.fb.group(
+  targetAdServices: FormGroup<ItargetAdServicesForm> = this.fb.group(
     {
       google: [false],
       bing: [false],
@@ -64,11 +66,11 @@ export class AdMultistepFormComponent implements OnInit {
     this.adService.getRoomsData();
   }
 
-  log() {
-    console.log(this.basicAdData.value['campaignDuration']);
-  }
-
-  handleFormDataSubmit(formData: any) {
+  handleFormDataSubmit(formData: {
+    stepNumber: number;
+    adBasicData?: IadBasicData;
+    providers?: ItargetAdServices;
+  }) {
     console.log(formData);
     this.adService.handleFormSubmit(formData);
   }

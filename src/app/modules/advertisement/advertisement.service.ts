@@ -3,6 +3,8 @@ import { RoomsService } from '../rooms/rooms.service';
 import { BehaviorSubject, map, tap } from 'rxjs';
 import { RoomStateEnum } from '../shared/models/room-state.enum';
 import { RoomInterface } from '../shared/models/room.interface';
+import { IadBasicData } from './ad-forms/models/IadBasicData.interface';
+import { ItargetAdServices } from './ad-forms/models/ItargetAdServices.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -50,15 +52,24 @@ export class AdvertisementService {
     return result;
   }
 
-  handleFormSubmit(formData: Partial<{ stepNumber: number }>) {
+  handleFormSubmit(formData: {
+    stepNumber: number;
+    adBasicData?: IadBasicData;
+    providers?: ItargetAdServices;
+  }) {
     if (!formData) {
       return;
     }
 
-    if (formData.stepNumber === 2) {
-      const selectedAds = Object.keys(formData).filter(
-        (key) => formData[key] === true
+    if (formData.stepNumber === 2 && formData.providers) {
+      const { providers, stepNumber } = formData;
+
+      const selectedAds = Object.keys(providers).filter(
+        (key) => providers[key] === true
       );
+
+      console.log(selectedAds);
+
       this.selectedAdProviders$.next(selectedAds);
     }
 
