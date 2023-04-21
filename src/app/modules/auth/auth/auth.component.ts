@@ -1,6 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormControl,
+  Validators,
+} from '@angular/forms';
 import { RouteConfigLoadStart, Router } from '@angular/router';
 
 @Component({
@@ -26,8 +30,6 @@ export class AuthComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}
 
   ngOnDestroy(): void {
-    console.log('destroyed');
-
     // this.authService.handleLogout();
   }
 

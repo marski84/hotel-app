@@ -62,7 +62,6 @@ export class AdMultistepFormComponent implements OnInit {
     private adService: AdvertisementService
   ) {}
   ngOnInit(): void {
-    console.log('oninit');
     this.adService.getRoomsData();
   }
 
@@ -71,12 +70,10 @@ export class AdMultistepFormComponent implements OnInit {
     adBasicData?: IadBasicData;
     providers?: ItargetAdServices;
   }) {
-    console.log(formData);
     this.adService.handleFormSubmit(formData);
   }
 
   handleRoomDataReset() {
-    console.log('reset');
     this.adService.resetRoomsData();
   }
 }

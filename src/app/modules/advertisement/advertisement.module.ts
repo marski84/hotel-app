@@ -8,6 +8,7 @@ import { AdConfirmFormComponent } from './ad-forms/ad-confirm-form/ad-confirm-fo
 import { AdTargetDataFormComponent } from './ad-forms/ad-target-data-form/ad-target-data-form.component';
 import { MultiStepFormNavigationComponent } from './multi-step-form-navigation/multi-step-form-navigation.component';
 import { AdRoomSelectFormComponent } from './ad-forms/ad-select-room-form/room-ad-select-form';
+import { ViewSelectedAdsPipe } from './pipes/view-selected-ads.pipe';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AdRoomSelectFormComponent } from './ad-forms/ad-select-room-form/room-a
     AdRoomSelectFormComponent,
     AdConfirmFormComponent,
     MultiStepFormNavigationComponent,
+    ViewSelectedAdsPipe,
   ],
   imports: [CoreModule, MaterialModule],
   exports: [AdFormContainerComponent],

@@ -41,7 +41,6 @@ export class AdvertisementService {
     if (!room) {
       return;
     }
-    console.log(room);
     const roomIndex = this.roomsList.findIndex(
       (roomInList) => roomInList.roomNumber === room.roomNumber
     );

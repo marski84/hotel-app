@@ -1,7 +1,30 @@
+<!-- [ { "stepNumber": 1, "adBasicData": { "adTitle": "sdf", "adDescription": "f", "campaignDuration": { "start": "2023-04-03T22:00:00.000Z", "end": "2023-04-12T22:00:00.000Z" } } }, { "stepNumber": 2, "providers": { "google": false, "bing": false, "amazon": false, "facebook": true, "booking": true } } ] -->
+
 <ng-container *ngIf="(roomsWithAds$ | async)as roomsList">
     <div *ngFor="let room of roomsList">
-        <div>{{room.roomNumber}}</div>
-        <div>{{room.roomAds | json}}</div>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+
+                    <div>Room number: {{room.roomNumber}}</div>
+
+                </mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+                <div>
+                    Campaign name: {{room.roomAds[0].adBasicData.adTitle}}
+                </div>
+                <div *ngIf="room.roomAds.length> 0">
+                    Campaing Description: {{room.roomAds[0].adBasicData.adDescription}}
+                </div>
+
+                <div>
+                    Selected ad providers: {{room.roomAds[1] | viewSelectedAds}}
+                </div>
+
+            </mat-card-content>
+        </mat-card>
     </div>
 </ng-container>
 <app-multi-step-form-navigation [canNavigateForward]="false"></app-multi-step-form-navigation>

@@ -25,7 +25,6 @@ export class AdRoomSelectFormComponent implements OnInit {
 
   handlePublishAds(room: RoomInterface) {
     room.roomAds = this.adService.formData;
-    console.log(room);
     this.adService.updateRoomAds(room);
     if (!this.roomAdPresent) {
       this.roomAdPresent = true;

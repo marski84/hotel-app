@@ -9,9 +9,7 @@ import { Router } from '@angular/router';
 export class AdFormContainerComponent implements OnInit {
   constructor(private router: Router) {}
 
-  ngOnInit(): void {
-    console.log(this.router.url);
-  }
+  ngOnInit(): void {}
 
   onReturn() {
     this.router.navigate(['dashboard/rooms-list/']);
