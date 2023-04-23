@@ -23,6 +23,10 @@
                     Selected ad providers: {{room.roomAds[1] | viewSelectedAds}}
                 </div>
 
+                <div>
+                    Selected time of duration: {{room.roomAds[0].adBasicData.campaignDuration.start | date : 'dd/MM/yyyy'}} --- {{room.roomAds[0].adBasicData.campaignDuration.end | date: 'dd/MM/yyyy' }}
+                </div>
+
             </mat-card-content>
         </mat-card>
     </div>

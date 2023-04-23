@@ -14,9 +14,8 @@ export class ViewSelectedAdsPipe implements PipeTransform {
         (key) => value.providers[key] === true
       );
 
-      console.log(providers);
+      return providers;
     }
-    console.log(value);
 
     return [''];
   }
