@@ -102,7 +102,9 @@ export class RoomsService extends AbstractApiHandlerService {
   }
 
   saveData(data: RoomInterface[]): Observable<boolean> {
+    console.log(data);
     const rooms = JSON.stringify(data);
+
     window.localStorage.setItem('hotel-rooms', rooms);
     return of(true);
   }
@@ -112,6 +114,8 @@ export class RoomsService extends AbstractApiHandlerService {
   }
 
   updateRoomData(updateData: RoomInterface) {
+    console.log(updateData);
+
     const roomIndex = this.findRoomIndex(updateData);
     if (roomIndex === -1) {
       return;
@@ -119,8 +123,15 @@ export class RoomsService extends AbstractApiHandlerService {
     this.updateRoomState(roomIndex, updateData);
   }
 
-  updateRoomAd(data: any) {
-    console.log(data);
+  updateRoomAds(updateData: RoomInterface) {
+    console.log(updateData);
+
+    const roomIndex = this.findRoomIndex(updateData);
+    if (roomIndex === -1) {
+      return;
+    }
+    this.hotelRooms[roomIndex].roomAds = updateData.roomAds;
+    this.saveData(this.hotelRooms);
   }
 
   private findRoomIndex(updateData: RoomInterface) {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdvertisementService } from '../../advertisement.service';
-import { filter, map, tap } from 'rxjs';
+import { filter, map, take, tap } from 'rxjs';
 import { RoomInterface } from 'src/app/modules/shared/models/room.interface';
 
 @Component({
@@ -10,6 +10,7 @@ import { RoomInterface } from 'src/app/modules/shared/models/room.interface';
 })
 export class AdConfirmFormComponent implements OnInit {
   roomsWithAds$ = this.adService.roomsList$.pipe(
+    // take(1),
     map((roomsList) => this.prepareRoomList(roomsList))
   );
 
@@ -19,5 +20,15 @@ export class AdConfirmFormComponent implements OnInit {
 
   private prepareRoomList(roomsList: RoomInterface[]) {
     return roomsList.filter((room: RoomInterface) => room.roomAds.length > 0);
+  }
+
+  handleSelectedRoomsAdUpdate() {
+    this.adService.roomsList$
+      .pipe(
+        // take(1),
+        map((roomsList) => this.prepareRoomList(roomsList)),
+        map((roomsList) => this.adService.postRoomsWithAds(roomsList))
+      )
+      .subscribe();
   }
 }

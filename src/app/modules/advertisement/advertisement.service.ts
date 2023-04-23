@@ -46,6 +46,8 @@ export class AdvertisementService {
     );
     this.roomService[roomIndex] = room;
     this.roomsList$.next(this.roomsList);
+
+    console.log(this.roomsList);
   }
 
   private handleFilterRoomList(roomList: RoomInterface[]) {
@@ -107,5 +109,9 @@ export class AdvertisementService {
     this.roomsList = [];
     this.getRoomsData();
     this.selectedAdProviders$.next([]);
+  }
+
+  postRoomsWithAds(roomList: RoomInterface[]) {
+    roomList.forEach((room) => this.roomService.updateRoomAds(room));
   }
 }
