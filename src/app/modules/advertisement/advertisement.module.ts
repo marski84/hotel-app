@@ -11,17 +11,16 @@ import { AdRoomSelectFormComponent } from './ad-forms/ad-select-room-form/room-a
 import { ViewSelectedAdsPipe } from './pipes/view-selected-ads.pipe';
 
 @NgModule({
-  declarations: [
-    AdFormContainerComponent,
-    AdMultistepFormComponent,
-    AdBasicDataFormComponent,
-    AdTargetDataFormComponent,
-    AdRoomSelectFormComponent,
-    AdConfirmFormComponent,
-    MultiStepFormNavigationComponent,
-    ViewSelectedAdsPipe,
-  ],
-  imports: [CoreModule, MaterialModule],
-  exports: [AdFormContainerComponent],
+    declarations: [
+        AdFormContainerComponent,
+        AdMultistepFormComponent,
+        AdBasicDataFormComponent,
+        AdTargetDataFormComponent,
+        AdRoomSelectFormComponent,
+        AdConfirmFormComponent,
+        MultiStepFormNavigationComponent,
+    ],
+    exports: [AdFormContainerComponent],
+    imports: [CoreModule, MaterialModule, ViewSelectedAdsPipe]
 })
 export class AdvertisementModule {}

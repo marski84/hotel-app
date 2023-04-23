@@ -3,6 +3,7 @@ import { ItargetAdServices } from '../ad-forms/models/ItargetAdServices.interfac
 
 @Pipe({
   name: 'viewSelectedAds',
+  standalone: true,
 })
 export class ViewSelectedAdsPipe implements PipeTransform {
   transform(value: {
