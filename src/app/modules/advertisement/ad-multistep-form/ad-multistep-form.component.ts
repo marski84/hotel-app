@@ -10,9 +10,9 @@ import {
 import { AdvertisementService } from '../advertisement.service';
 import { requireCheckboxesToBeCheckedValidator } from '../ad-forms/custom-validators/requireCheckboxesToBeCheckedValidator';
 import { IadBasicDataForm } from '../ad-forms/models/IadBasicDataForm.interface';
-import { IadBasicData } from '../ad-forms/models/IadBasicData.interface';
-import { ItargetAdServices } from '../ad-forms/models/ItargetAdServices.interface';
 import { ItargetAdServicesForm } from '../ad-forms/models/ItargetAdServicesForm.interface';
+import { IadvertisementForm } from '../ad-forms/models/IadvertisementForm.interface';
+import { ItargetAdServices } from '../ad-forms/models/ItargetAdServices.interface';
 
 @Component({
   selector: 'app-ad-multistep-form',
@@ -51,26 +51,21 @@ export class AdMultistepFormComponent implements OnInit {
     { validators: [requireCheckboxesToBeCheckedValidator()] }
   );
 
-  roomAdSelection = this.fb.group({});
-
-  get roomAdSelectionCtrl() {
-    return this.roomAdSelection as FormGroup;
-  }
+  mainForm: FormGroup<IadvertisementForm> = this.fb.group({
+    adBasicDataForm: this.basicAdData,
+    targetAdServicesForm: this.targetAdServices,
+  });
 
   constructor(
     private fb: NonNullableFormBuilder,
     private adService: AdvertisementService
   ) {}
+
   ngOnInit(): void {
     this.adService.getRoomsData();
-  }
-
-  handleFormDataSubmit(formData: {
-    stepNumber: number;
-    adBasicData?: IadBasicData;
-    providers?: ItargetAdServices;
-  }) {
-    this.adService.handleFormSubmit(formData);
+    console.log(
+      this.mainForm.valueChanges.subscribe((value) => console.log(value))
+    );
   }
 
   handleRoomDataReset() {

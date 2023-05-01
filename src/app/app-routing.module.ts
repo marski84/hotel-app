@@ -14,20 +14,20 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuardFn],
   },
-  {
-    path: 'dashboard',
-    loadChildren: () =>
-      import('./modules/admin/admin/admin.component').then(
-        (m) => m.AdminComponent
-      ),
+  // {
+  //   path: 'dashboard',
+  //   loadChildren: () =>
+  //     import('./modules/admin/admin/admin.component').then(
+  //       (m) => m.AdminComponent
+  //     ),
 
-    // loadChildren: () =>
-    // import('./modules/admin/admin.module').then((m) => m.AdminModule),
-    data: {
-      preloaded: true,
-    },
-    canActivate: [AuthGuardFn],
-  },
+  //   // loadChildren: () =>
+  //   // import('./modules/admin/admin.module').then((m) => m.AdminModule),
+  //   data: {
+  //     preloaded: true,
+  //   },
+  //   canActivate: [AuthGuardFn],
+  // },
 
   // {
   //   path: 'dashboard',

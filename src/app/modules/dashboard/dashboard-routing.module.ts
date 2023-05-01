@@ -3,16 +3,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardFn } from '../auth/auth/auth-guard.fn';
 
+// domena/dashboard
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
     canActivate: [AuthGuardFn],
-    // redirectTo: 'rooms-list',
   },
-  { path: '', redirectTo: 'rooms-list', pathMatch: 'full' },
   {
-    path: '',
+    path: 'rooms-list',
     loadChildren: () =>
       import('../rooms/rooms.module').then((m) => m.RoomsModule),
     canActivate: [AuthGuardFn],

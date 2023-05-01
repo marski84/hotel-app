@@ -5,10 +5,7 @@
         errorMessage="Ad data is required!"
     >
         <ng-template matStepLabel>Fill ad basic data</ng-template>
-        <app-ad-basic-data-form
-            [formGroup]="basicAdData"
-            (formDataEmitted)="handleFormDataSubmit($event)"
-        ></app-ad-basic-data-form>
+        <app-ad-basic-data-form [formGroup]="basicAdData"></app-ad-basic-data-form>
 
     </mat-step>
     <!-- handle select ad services form -->
@@ -18,10 +15,7 @@
     >
         <ng-template matStepLabel>Select ad services</ng-template>
 
-        <app-ad-target-data-form
-            [formGroup]="targetAdServices"
-            (formDataEmitted)="handleFormDataSubmit($event)"
-        ></app-ad-target-data-form>
+        <app-ad-target-data-form [formGroup]="targetAdServices"></app-ad-target-data-form>
 
     </mat-step>
     <!-- select rooms to publish ad -->
@@ -35,7 +29,10 @@
         </p>
         <ng-template matStepLabel>Fill out your address</ng-template>
 
-        <app-room-ad-select-form [formGroup]="roomAdSelection"></app-room-ad-select-form>
+        <app-room-ad-select-form
+            [basicAdDataForm]="basicAdData"
+            [adTargetDataForm]="targetAdServices"
+        ></app-room-ad-select-form>
         <div>
 
             <button

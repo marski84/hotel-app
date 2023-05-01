@@ -15,7 +15,7 @@ export class AuthPreloadStrategy implements PreloadingStrategy {
       .getUserAuthPriviliges()
       .pipe(
         switchMap((result) => {
-          // iif()
+          // TODO: iif()
           if (
             result === AuthLevel.ADMIN &&
             route.data &&

@@ -7,7 +7,7 @@ import { CoreModule } from '../core/core.module';
 @NgModule({
   declarations: [DashboardComponent],
   imports: [SharedModule, DashboardRoutingModule, CoreModule],
-  exports: [DashboardComponent],
+  exports: [],
   providers: [],
 })
 export class DashboardModule {}

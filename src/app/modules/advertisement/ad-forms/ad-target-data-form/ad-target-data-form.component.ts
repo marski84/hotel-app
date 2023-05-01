@@ -1,10 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import {
-  UntypedFormControl,
-  UntypedFormGroup,
-  FormGroup,
-} from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { ItargetAdServicesForm } from '../models/ItargetAdServicesForm.interface';
+import { IadvertisementForm } from '../models/IadvertisementForm.interface';
 
 @Component({
   selector: 'app-ad-target-data-form',
@@ -13,6 +10,7 @@ import { ItargetAdServicesForm } from '../models/ItargetAdServicesForm.interface
 })
 export class AdTargetDataFormComponent implements OnInit {
   @Input() formGroup!: FormGroup<ItargetAdServicesForm>;
+
   @Output() formDataEmitted = new EventEmitter<any>();
 
   constructor() {}

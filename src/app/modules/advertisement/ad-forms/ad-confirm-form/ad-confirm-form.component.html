@@ -1,7 +1,7 @@
 <!-- [ { "stepNumber": 1, "adBasicData": { "adTitle": "sdf", "adDescription": "f", "campaignDuration": { "start": "2023-04-03T22:00:00.000Z", "end": "2023-04-12T22:00:00.000Z" } } }, { "stepNumber": 2, "providers": { "google": false, "bing": false, "amazon": false, "facebook": true, "booking": true } } ] -->
 
 <ng-container *ngIf="(roomsWithAds$ | async)as roomsList">
-    <div *ngFor="let room of roomsList">
+    <ul *ngFor="let room of roomsList">
         <mat-card>
             <mat-card-header>
                 <mat-card-title>
@@ -30,7 +30,7 @@
 
             </mat-card-content>
         </mat-card>
-    </div>
+    </ul>
 </ng-container>
 <app-multi-step-form-navigation [canNavigateForward]="false"></app-multi-step-form-navigation>
 

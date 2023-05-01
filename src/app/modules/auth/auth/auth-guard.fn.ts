@@ -18,9 +18,10 @@ export const AuthGuardFn: CanActivateFn = (): UrlTree | boolean => {
   const adminPrivPass = authService.adminPassword;
   const workerPrivPass = authService.workerPassword;
 
+  // warunek async
   if (authLevelToken !== adminPrivPass && authLevelToken !== workerPrivPass) {
     toastService.error('Please log in.', 'Login error');
-    router.navigate([]);
+    // router.navigate([]);
     return new UrlTree();
   }
 

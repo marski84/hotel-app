@@ -19,7 +19,7 @@ export class AdConfirmFormComponent implements OnInit {
   ngOnInit(): void {}
 
   private prepareRoomList(roomsList: RoomInterface[]) {
-    return roomsList.filter((room: RoomInterface) => room.roomAds.length > 0);
+    return roomsList.filter((room: RoomInterface) => room.roomAds);
   }
 
   handleSelectedRoomsAdUpdate() {

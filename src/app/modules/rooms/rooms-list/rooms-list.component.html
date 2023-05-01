@@ -15,7 +15,7 @@
         Add advertisement
     </button>
 
-    <div *ngFor="let room of rooms">
+    <ul *ngFor="let room of rooms">
         <mat-card>
             <app-room-view [room]="room">
 
@@ -36,6 +36,6 @@
 
         </mat-card>
 
-    </div>
+    </ul>
 
 </ng-container>

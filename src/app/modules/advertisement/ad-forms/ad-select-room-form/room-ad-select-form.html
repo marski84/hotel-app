@@ -5,7 +5,6 @@
             Selected ad providers:
             <div *ngFor="let provider of providers; let i = index">{{i +1}}. {{provider}}</div>
             <div *ngIf="providers.length === 0">No ad providers were selected!!</div>
-
         </div>
 
         <form>
@@ -22,22 +21,21 @@
 
                     <mat-card-content>
                         <div>Room state: {{room.roomState}}</div>
-                        <div *ngIf="room.roomAds.length>0">
+                        <div *ngIf="room.roomAds">
                             <div>
-                                Campaign name: {{room.roomAds[0].adBasicData.adTitle}}
+                                Campaign name: {{room.roomAds[0]?.adTitle}}
                             </div>
                             <div>
-                                Campaing Description: {{room.roomAds[0].adBasicData.adDescription}}
+                                Campaing Description: {{room.roomAds[0]?.adDescription}}
                             </div>
                         </div>
                     </mat-card-content>
-
                     <mat-card-actions>
                         <button
-                            [disabled]="providers.length === 0"
                             type="button"
                             mat-raised-button
                             (click)="handlePublishAds(room)"
+                            [disabled]="providers.length === 0"
                         >
                             Publish selected ads in rooms
                         </button>
@@ -49,7 +47,7 @@
 
             </div>
 
-            <app-multi-step-form-navigation [canNavigateForward]="providers.length > 0 && roomAdPresent"></app-multi-step-form-navigation>
+            <app-multi-step-form-navigation [canNavigateForward]="true"></app-multi-step-form-navigation>
 
         </form>
     </ng-container>
