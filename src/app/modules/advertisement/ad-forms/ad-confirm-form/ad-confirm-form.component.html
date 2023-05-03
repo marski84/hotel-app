@@ -1,6 +1,4 @@
-<!-- [ { "stepNumber": 1, "adBasicData": { "adTitle": "sdf", "adDescription": "f", "campaignDuration": { "start": "2023-04-03T22:00:00.000Z", "end": "2023-04-12T22:00:00.000Z" } } }, { "stepNumber": 2, "providers": { "google": false, "bing": false, "amazon": false, "facebook": true, "booking": true } } ] -->
-
-<ng-container *ngIf="(roomsWithAds$ | async)as roomsList">
+<ng-container *ngIf="(roomsWithAds$ | async) as roomsList">
     <ul *ngFor="let room of roomsList">
         <mat-card>
             <mat-card-header>
@@ -12,20 +10,24 @@
             </mat-card-header>
 
             <mat-card-content>
-                <div>
-                    Campaign name: {{room.roomAds[0].adBasicData.adTitle}}
-                </div>
+                <div *ngFor="let roomAd of room.roomAds">
 
-                <div>
-                    Campaing Description: {{room.roomAds[0].adBasicData.adDescription}}
-                </div>
+                    <div>
+                        Campaign name: {{roomAd.adBasicDataForm.adTitle}}
+                    </div>
 
-                <div>
-                    Selected ad providers: {{room.roomAds[1] | viewSelectedAds}}
-                </div>
+                    <div>
+                        Campaing Description: {{roomAd.adBasicDataForm.adTitle}}
+                    </div>
 
-                <div>
-                    Selected time of duration: {{room.roomAds[0].adBasicData.campaignDuration.start | date : 'dd/MM/yyyy'}} --- {{room.roomAds[0].adBasicData.campaignDuration.end | date: 'dd/MM/yyyy' }}
+                    <div>
+                        Selected ad providers: {{roomAd.targetAdServicesForm | viewSelectedAds}}
+                    </div>
+
+                    <div>
+                        Selected time of duration: {{roomAd.adBasicDataForm.campaignDuration.start | date : 'dd/MM/yyyy'}} --- {{roomAd.adBasicDataForm.campaignDuration.end | date: 'dd/MM/yyyy' }}
+                    </div>
+
                 </div>
 
             </mat-card-content>

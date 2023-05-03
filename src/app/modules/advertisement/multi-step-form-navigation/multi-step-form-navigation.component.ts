@@ -13,6 +13,4 @@ export class MultiStepFormNavigationComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-
-  handleFormDataSave() {}
 }

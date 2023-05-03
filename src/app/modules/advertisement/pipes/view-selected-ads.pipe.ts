@@ -6,14 +6,11 @@ import { ItargetAdServices } from '../ad-forms/models/ItargetAdServices.interfac
   standalone: true,
 })
 export class ViewSelectedAdsPipe implements PipeTransform {
-  transform(value: {
-    stepNumber: string;
-    providers: ItargetAdServices;
-  }): string[] {
-    if (value.providers) {
-      const providers = Object.keys(value.providers).filter(
-        (key) => value.providers[key] === true
-      );
+  transform(value: ItargetAdServices): string[] {
+    console.log(value);
+
+    if (value) {
+      const providers = Object.keys(value).filter((key) => value[key] === true);
 
       return providers;
     }

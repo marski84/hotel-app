@@ -5,7 +5,7 @@
         errorMessage="Ad data is required!"
     >
         <ng-template matStepLabel>Fill ad basic data</ng-template>
-        <app-ad-basic-data-form [formGroup]="basicAdData"></app-ad-basic-data-form>
+        <app-ad-basic-data-form [formGroup]="mainForm.controls.adBasicDataForm"></app-ad-basic-data-form>
 
     </mat-step>
     <!-- handle select ad services form -->
@@ -15,7 +15,7 @@
     >
         <ng-template matStepLabel>Select ad services</ng-template>
 
-        <app-ad-target-data-form [formGroup]="targetAdServices"></app-ad-target-data-form>
+        <app-ad-target-data-form [formGroup]="mainForm.controls.targetAdServicesForm"></app-ad-target-data-form>
 
     </mat-step>
     <!-- select rooms to publish ad -->
@@ -27,12 +27,9 @@
         <p>
             Select rooms in which you want ad to be visible
         </p>
-        <ng-template matStepLabel>Fill out your address</ng-template>
+        <!-- <ng-template matStepLabel>Fill out your address</ng-template> -->
 
-        <app-room-ad-select-form
-            [basicAdDataForm]="basicAdData"
-            [adTargetDataForm]="targetAdServices"
-        ></app-room-ad-select-form>
+        <app-room-ad-select-form [mainForm]="mainForm"></app-room-ad-select-form>
         <div>
 
             <button
@@ -48,7 +45,7 @@
     <mat-step>
         <ng-template matStepLabel>Confirm your choice</ng-template>
         <p>
-            In order to publish ads in rooms confirm your selectin
+            In order to publish ads in rooms confirm your selection
         </p>
         <div>
             <app-ad-confirm-form></app-ad-confirm-form>
@@ -61,6 +58,5 @@
             </button>
 
         </div>
-
     </mat-step>
 </mat-stepper>

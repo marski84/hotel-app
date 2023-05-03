@@ -63,9 +63,6 @@ export class AdMultistepFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.adService.getRoomsData();
-    console.log(
-      this.mainForm.valueChanges.subscribe((value) => console.log(value))
-    );
   }
 
   handleRoomDataReset() {

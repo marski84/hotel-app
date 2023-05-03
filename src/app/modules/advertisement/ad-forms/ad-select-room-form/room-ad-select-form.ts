@@ -7,6 +7,7 @@ import { IadBasicDataForm } from '../models/IadBasicDataForm.interface';
 import { ItargetAdServicesForm } from '../models/ItargetAdServicesForm.interface';
 import { ItargetAdServices } from '../models/ItargetAdServices.interface';
 import { IadvertisementForm } from '../models/IadvertisementForm.interface';
+import { IroomAds } from 'src/app/modules/shared/models/roomAds.interface';
 
 @Component({
   selector: 'app-room-ad-select-form',
@@ -14,10 +15,8 @@ import { IadvertisementForm } from '../models/IadvertisementForm.interface';
   styleUrls: ['./room-ad-select-form.scss'],
 })
 export class AdRoomSelectFormComponent implements OnInit {
-  @Input() formGroup!: FormGroup; // otypuj na konkretny formGroup
-  @Input() mainForm!: IadvertisementForm;
-  @Input() basicAdDataForm!: FormGroup<IadBasicDataForm>; // otypuj na konkretny formGroup
-  @Input() adTargetDataForm!: FormGroup<ItargetAdServicesForm>; // otypuj na konkretny formGroup
+  @Input() mainForm!: FormGroup<IadvertisementForm>;
+
   roomsData$: Observable<RoomInterface[]> = this.adService.roomsList$;
   selectedAdProviders$!: Observable<string[]>;
 
@@ -26,16 +25,17 @@ export class AdRoomSelectFormComponent implements OnInit {
   constructor(private adService: AdvertisementService) {}
 
   ngOnInit(): void {
-    this.basicAdDataForm.valueChanges
-      .pipe(tap((value) => console.log(value)))
+    this.mainForm.valueChanges
+      // .pipe(tap((value) => console.log(value)))
       .subscribe();
 
-    this.selectedAdProviders$ = this.adTargetDataForm.valueChanges.pipe(
-      tap((value) => console.log(value)),
-      map((adProvidersData) => this.prepareSelectedAdProviders(adProvidersData))
-    );
-
-    // formGroupFirstStep.filter(isValid).subscribe
+    this.selectedAdProviders$ =
+      this.mainForm.controls.targetAdServicesForm.valueChanges.pipe(
+        // tap((value) => console.log(value)),
+        map((adProvidersData) =>
+          this.prepareSelectedAdProviders(adProvidersData)
+        )
+      );
   }
 
   private prepareSelectedAdProviders(providers: Partial<ItargetAdServices>) {
@@ -47,10 +47,12 @@ export class AdRoomSelectFormComponent implements OnInit {
   }
 
   handlePublishAds(room: RoomInterface) {
-    // room.roomAds = this.adService.formData;
-    this.adService.updateRoomAds(room);
-    if (!this.roomAdPresent) {
-      this.roomAdPresent = true;
+    if (this.mainForm.value) {
+      room.roomAds.push(this.mainForm.value as IroomAds);
+      this.adService.updateRoomAds(room);
+      if (!this.roomAdPresent) {
+        this.roomAdPresent = true;
+      }
     }
   }
 

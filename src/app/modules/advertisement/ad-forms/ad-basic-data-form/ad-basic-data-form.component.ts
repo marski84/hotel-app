@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormGroup, UntypedFormControl } from '@angular/forms';
 import { IadBasicDataForm } from '../models/IadBasicDataForm.interface';
+import { IadvertisementForm } from '../models/IadvertisementForm.interface';
 
 @Component({
   selector: 'app-ad-basic-data-form',

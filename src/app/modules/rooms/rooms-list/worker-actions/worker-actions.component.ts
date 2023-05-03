@@ -25,11 +25,9 @@ export class WorkerActionsComponent implements OnInit {
   @Output() roomStateChangeEmitted: EventEmitter<RoomInterface> =
     new EventEmitter<RoomInterface>();
 
-
-    get dupa() {
-console.log('test');
-return 1;
-    }
+  get dupa() {
+    return 1;
+  }
 
   ngOnInit(): void {
     // serwis.sub(res => this.dana  = res) // this.changeDetectionRef.markForCheck
@@ -37,20 +35,18 @@ return 1;
     // treeshaking
     // smart => container
     // dump => wyswietlenie listy
-
     // zone.js
     // ngZone.runOutsideAngular(interval który dodaje miliion razy +1 900tyś wywołuje się changeDetection)
   }
 
   changeColor() {
     // this.output.emit();
-//this.colorprzycisku = red;
+    //this.colorprzycisku = red;
   }
 
   onRoomCheck() {
     this.room.markedForCheck = true;
     const roomCopy = JSON.parse(JSON.stringify(this.room));
     this.roomStateChangeEmitted.emit(roomCopy);
-    console.log('ok');
   }
 }
