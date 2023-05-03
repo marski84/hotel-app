@@ -1,6 +1,6 @@
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 import { AuthService } from './auth.service';
-import { filter, map, tap } from 'rxjs';
+import { filter, map } from 'rxjs';
 import { AuthLevel } from '../shared/models/auth-level.enum';
 
 @Directive({
