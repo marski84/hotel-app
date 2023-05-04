@@ -3,8 +3,8 @@ import { AdvertisementModule } from '../../advertisement/advertisement.module';
 
 @Component({
   selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss'],
+  templateUrl: './admin-advertisement.component.html',
+  styleUrls: ['./admin-advertisement.component.scss'],
   standalone: true,
   imports: [AdvertisementModule],
 })

@@ -3,7 +3,7 @@ import { inject } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth.service';
 
-export const AdsGuardFn: CanActivateFn = (): boolean | UrlTree => {
+export const AdminGuardFn: CanActivateFn = (): boolean | UrlTree => {
   const router = inject(Router);
   const toastrService = inject(ToastrService);
   const authService = inject(AuthService);

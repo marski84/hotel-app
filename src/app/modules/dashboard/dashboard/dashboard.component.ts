@@ -9,9 +9,7 @@ import { RouteConfigLoadStart, Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
   constructor(private router: Router) {}
 
-  ngOnInit(): void {
-    // this.router.navigate(['dashboard/rooms-list']);
-  }
+  ngOnInit(): void {}
 
   handleLogout() {
     window.sessionStorage.removeItem('authLevelToken');

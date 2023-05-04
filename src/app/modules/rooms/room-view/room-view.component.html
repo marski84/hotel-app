@@ -21,19 +21,30 @@
     <mat-card-content>
         <div>Room state: {{room.roomState}}</div>
 
-        <ng-container *ngIf="room.roomAds">
-            <ng-container *ngFor="let roomAd of room.roomAds">
-                <div>
-                    Campaing Description: {{roomAd.adBasicDataForm.adDescription}}
-                </div>
+        <mat-divider></mat-divider>
+
+        <ng-container
+            class="ad-container"
+            *ngIf="room.roomAds"
+        >
+            <ng-container *ngFor="let roomAd of room.roomAds; let i = index">
 
                 <div>
-                    Selected ad providers: {{roomAd.targetAdServicesForm | viewSelectedAds}}
-                </div>
+                    Campaign number {{i +1}}
+                    <div>
+                        Campaing Description: {{roomAd.adBasicDataForm.adDescription}}
+                    </div>
 
-                <div>
-                    Selected time of duration: {{roomAd.adBasicDataForm.campaignDuration.start| date : 'dd/MM/yyyy'}} --- {{roomAd.adBasicDataForm.campaignDuration.end| date: 'dd/MM/yyyy' }}
+                    <div>
+                        Selected ad providers: {{roomAd.targetAdServicesForm | viewSelectedAds}}
+                    </div>
+
+                    <div>
+                        Selected time of duration: {{roomAd.adBasicDataForm.campaignDuration.start| date : 'dd/MM/yyyy'}} --- {{roomAd.adBasicDataForm.campaignDuration.end| date: 'dd/MM/yyyy' }}
+                    </div>
                 </div>
+                <mat-divider></mat-divider>
+
             </ng-container>
 
         </ng-container>

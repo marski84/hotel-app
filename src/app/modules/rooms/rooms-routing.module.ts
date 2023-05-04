@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Route } from '@angular/router';
 import { RoomsListComponent } from './rooms-list/rooms-list.component';
-import { AdminComponent } from '../admin/admin/admin.component';
-import { AdsGuardFn } from '../auth/auth/ads-guard.fn';
+import { AdminComponent } from '../admin/admin/admin-advertisement.component';
+import { AdminGuardFn } from '../auth/auth/admin-guard.fn';
 
 // domena/dashboard/rooms-list/advertisement-form
 const routes: Route[] = [
@@ -13,7 +13,7 @@ const routes: Route[] = [
   {
     path: 'advertisement-form',
     component: AdminComponent,
-    canActivate: [AdsGuardFn], // lazy loading | standaloneComponent +  guard
+    canActivate: [AdminGuardFn], // lazy loading | standaloneComponent +  guard
   },
 ];
 
