@@ -8,9 +8,14 @@ import { InavConfiguration } from '../models/nav-config.interface';
   styleUrls: ['./nav.component.css'],
 })
 export class NavComponent implements OnInit {
-  constructor(@Inject(NAV_CONF) private navConf: InavConfiguration) {
+  hasOnClick;
+
+  constructor(@Inject(NAV_CONF) public navConf: InavConfiguration) {
     console.log(navConf);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.hasOnClick = this.navConf.hasOnClick;
+    console.log(this.hasOnClick);
+  }
 }

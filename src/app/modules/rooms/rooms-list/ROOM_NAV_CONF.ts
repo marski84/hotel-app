@@ -1,5 +1,11 @@
 import { InavConfiguration } from '../../shared/models/nav-config.interface';
 
 export const ROOM_NAV: InavConfiguration = {
-  hasOnClick: true,
+  canLogout: true,
+  buttons: [
+    {
+      buttonName: 'rooms',
+      routerLink: 'rooms-list',
+    },
+  ],
 };

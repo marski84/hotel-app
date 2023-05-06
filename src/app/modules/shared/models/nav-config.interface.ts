@@ -1,3 +1,4 @@
 export interface InavConfiguration {
-  hasOnClick: boolean;
+  canLogout: boolean;
+  buttons: [{ buttonName: string; routerLink: string; icon?: string }];
 }

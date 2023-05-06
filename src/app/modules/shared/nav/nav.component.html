@@ -2,7 +2,10 @@
 
     <mat-toolbar-row>
 
-        <button mat-raised-button>
+        <button
+            mat-raised-button
+            *ngIf="hasOnClick"
+        >
             <div>Logout</div>
             <mat-icon>logout</mat-icon>
         </button>
