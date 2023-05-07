@@ -1,4 +1,4 @@
 export interface InavConfiguration {
   canLogout: boolean;
-  buttons: [{ buttonName: string; routerLink: string; icon?: string }];
+  buttons: Array<{ buttonName: string; routerLink: string; icon?: string }>;
 }

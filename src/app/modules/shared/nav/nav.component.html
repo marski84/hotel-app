@@ -1,24 +1,25 @@
 <mat-toolbar color="primary">
 
-    <mat-toolbar-row>
+    <mat-toolbar-row *ngFor="let button of navConf.buttons">
 
         <button
             mat-raised-button
-            *ngIf="hasOnClick"
+            [routerLink]="button.routerLink"
+        >
+            <div>{{button.buttonName}}</div>
+            <mat-icon>{{button.icon}}</mat-icon>
+        </button>
+
+    </mat-toolbar-row>
+
+    <mat-toolbar-row>
+        <button
+            mat-raised-button
+            (click)="handleLogout()"
         >
             <div>Logout</div>
             <mat-icon>logout</mat-icon>
         </button>
-
     </mat-toolbar-row>
 
-    <mat-toolbar-row>
-        <button
-            mat-raised-button
-            routerLink="rooms-list"
-        >
-            <div>Rooms</div>
-            <mat-icon>list_alt</mat-icon>
-        </button>
-    </mat-toolbar-row>
 </mat-toolbar>

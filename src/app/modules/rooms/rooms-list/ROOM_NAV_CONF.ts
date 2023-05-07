@@ -4,8 +4,12 @@ export const ROOM_NAV: InavConfiguration = {
   canLogout: true,
   buttons: [
     {
-      buttonName: 'rooms',
-      routerLink: 'rooms-list',
+      buttonName: 'Return to dashboard',
+      routerLink: '/dashboard',
+    },
+    {
+      buttonName: 'Advertisement form',
+      routerLink: 'advertisement-form',
     },
   ],
 };
