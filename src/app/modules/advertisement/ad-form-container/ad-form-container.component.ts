@@ -10,8 +10,4 @@ export class AdFormContainerComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
-
-  onReturn() {
-    this.router.navigate(['dashboard/rooms-list/']);
-  }
 }

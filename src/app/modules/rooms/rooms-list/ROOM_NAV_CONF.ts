@@ -6,10 +6,12 @@ export const ROOM_NAV: InavConfiguration = {
     {
       buttonName: 'Return to dashboard',
       routerLink: '/dashboard',
+      icon: 'dashboard',
     },
     {
       buttonName: 'Advertisement form',
       routerLink: 'advertisement-form',
+      icon: 'assignment',
     },
   ],
 };

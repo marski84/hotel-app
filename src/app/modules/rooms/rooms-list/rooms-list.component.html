@@ -1,7 +1,7 @@
 <ng-container *ngIf="hotelRoomsObservable$ | async as rooms">
     <app-nav></app-nav>
 
-    <button
+    <!-- <button
         mat-raised-button
         routerLink="/dashboard"
     >
@@ -14,7 +14,7 @@
         routerLink="advertisement-form"
     >
         Add advertisement
-    </button>
+    </button> -->
 
     <ul *ngFor="let room of rooms">
         <mat-card>
