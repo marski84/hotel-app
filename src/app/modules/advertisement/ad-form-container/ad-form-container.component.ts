@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ad-form-container',
@@ -7,7 +6,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./ad-form-container.component.scss'],
 })
 export class AdFormContainerComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor() {}
 
   ngOnInit(): void {}
 }

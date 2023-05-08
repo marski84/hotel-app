@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./nav.component.css'],
 })
 export class NavComponent implements OnInit {
+  @Input() isAdmin?: boolean;
   hasOnClick;
 
   constructor(
@@ -18,7 +19,9 @@ export class NavComponent implements OnInit {
     console.log(navConf);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.isAdmin);
+  }
 
   handleLogout() {
     window.sessionStorage.removeItem('authLevelToken');

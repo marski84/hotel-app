@@ -4,9 +4,8 @@
 
             <div>Room number: {{room.roomNumber}}</div>
             <div
-                ngIf="room.markedForCheck"
-                [ngClass]="{markedForCheck: room.markedForCheck}"
                 *appUserRoleView="AuthLevel.WORKER"
+                [ngClass]="{markedForCheck: room.markedForCheck}"
             >
                 Room needs to be checked!!
             </div>
