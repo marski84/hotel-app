@@ -9,22 +9,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./nav.component.css'],
 })
 export class NavComponent implements OnInit {
-  @Input() isAdmin?: boolean;
-  hasOnClick;
-
   constructor(
     private router: Router,
-    @Inject(NAV_CONF) public navConf: InavConfiguration
-  ) {
-    console.log(navConf);
-  }
+    @Inject(NAV_CONF) public navConf: InavConfiguration,
+    //SessionStorageService
+  ) {}
+  // spy => sessionStorage
+  // const sessionStorageMock = { removeItem: jest.fn() };
 
-  ngOnInit() {
-    console.log(this.isAdmin);
-  }
+  ngOnInit() {}
 
   handleLogout() {
-    window.sessionStorage.removeItem('authLevelToken');
+    // SessionStorageService
+    window.sessionStorage.removeItem('authLevelToken');//kłopot z testami
     this.router.navigate(['']);
   }
 }
+
+
+
+// given
+// when
+// then router.navigate.wasCalledOnceWith([''])
+

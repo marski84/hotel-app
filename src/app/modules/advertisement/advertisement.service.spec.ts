@@ -1,16 +1,17 @@
-import { TestBed } from '@angular/core/testing';
-
 import { AdvertisementService } from './advertisement.service';
+import { RoomsService } from '../rooms/rooms.service';
+
+// import { AdminActionsComponent } from './admin-actions.component';
 
 describe('AdvertisementService', () => {
-  let service: AdvertisementService;
+  let adService: AdvertisementService;
+  const provide = (mock: any): any => mock;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(AdvertisementService);
+    adService = new AdvertisementService(provide(RoomsService));
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  it('should create', () => {
+    expect(adService).toBeTruthy();
   });
 });

@@ -25,34 +25,26 @@ export class AdRoomSelectFormComponent implements OnInit {
   constructor(private adService: AdvertisementService) {}
 
   ngOnInit(): void {
-    this.mainForm.valueChanges
-      // .pipe(tap((value) => console.log(value)))
-      .subscribe();
-
-    this.selectedAdProviders$ =
-      this.mainForm.controls.targetAdServicesForm.valueChanges.pipe(
-        // tap((value) => console.log(value)),
-        map((adProvidersData) =>
-          this.prepareSelectedAdProviders(adProvidersData)
-        )
-      );
+    const { targetAdServicesForm } = this.mainForm.controls;
+    this.selectedAdProviders$ = targetAdServicesForm.valueChanges.pipe(
+      map((adProvidersData) => this.prepareSelectedAdProviders(adProvidersData))
+    );
   }
 
   private prepareSelectedAdProviders(providers: Partial<ItargetAdServices>) {
-    const selectedAds = Object.keys(providers).filter(
-      (key) => providers[key] === true
-    );
+    const selectedAds = Object.keys(providers).filter((key) => providers[key]);
 
     return selectedAds;
   }
 
   handlePublishAds(room: RoomInterface) {
-    if (this.mainForm.value) {
-      room.roomAds.push(this.mainForm.value as IroomAds);
-      this.adService.updateRoomAds(room);
-      if (!this.roomAdPresent) {
-        this.roomAdPresent = true;
-      }
+    if (!this.mainForm.valid) {
+      return;
+    }
+    room.roomAds.push(this.mainForm.value as IroomAds);
+    this.adService.updateRoomAds(room);
+    if (!this.roomAdPresent) {
+      this.roomAdPresent = true;
     }
   }
 

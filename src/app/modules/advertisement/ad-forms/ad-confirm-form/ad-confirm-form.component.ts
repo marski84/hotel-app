@@ -31,7 +31,7 @@ export class AdConfirmFormComponent implements OnInit {
     this.adService.roomsList$
       .pipe(
         map((roomsList) => this.prepareRoomList(roomsList)),
-        map((roomsList) => this.adService.postRoomsWithAds(roomsList))
+        tap((roomsList) => this.adService.postRoomsWithAds(roomsList))
       )
       .subscribe();
   }
