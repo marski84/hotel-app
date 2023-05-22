@@ -20,15 +20,9 @@ const mockData: RoomInterface[] = [
   },
 ];
 
-describe('AdvertisementService', () => {
+describe('AdvertisementService unit tests', () => {
   let adService: AdvertisementService;
   let mockRoomServiceSpy: AbstractApiHandlerService;
-
-  const provide = (mock: any): any => mock;
-
-  // let http = {
-  //   get: jest.fn(() => Observable.of(mockData)),
-  // };
 
   beforeEach(() => {
     let mockRoomServiceSpy: any = {
@@ -108,5 +102,17 @@ describe('AdvertisementService', () => {
     adService.roomsList$.subscribe((data) => (resp = data));
 
     expect(mockData[0].roomAds).toEqual(resp[0].roomAds);
+  });
+
+  it('it should call resetRoomsData and selectedAdProviders$ observable should emit empty array', () => {
+    const methodSpy = jest.spyOn(adService, 'resetRoomsData');
+    adService.getRoomsData();
+    adService.resetRoomsData();
+    expect(methodSpy).toHaveBeenCalled();
+
+    let resp;
+    adService.selectedAdProviders$.subscribe((data) => (resp = data));
+
+    expect(resp).toEqual([]);
   });
 });
