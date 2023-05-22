@@ -36,10 +36,14 @@ export class AdvertisementService {
     const roomIndex = this.roomsList.findIndex(
       (roomInList) => roomInList.roomNumber === room.roomNumber
     );
-    this.roomService[roomIndex] = room;
-    this.roomsList$.next(this.roomsList);
 
-    console.log(this.roomsList);
+    if (roomIndex === -1) {
+      // throw new Error('Room not found');
+      return;
+    }
+
+    this.roomService[roomIndex] = room;
+    return this.roomsList$.next(this.roomsList);
   }
 
   private handleFilterRoomList(roomList: RoomInterface[]) {

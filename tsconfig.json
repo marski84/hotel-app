@@ -24,7 +24,7 @@
     ],
     "useDefineForClassFields": false,
     "resolveJsonModule": true,
-        "paths": {
+    "paths": {
       "@app/*": ["src/app/*"]
     }
   },

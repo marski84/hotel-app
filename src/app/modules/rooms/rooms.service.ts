@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { RoomInterface } from '../shared/models/room.interface';
 import { RoomStateEnum } from '../shared/models/room-state.enum';
 import { Observable, of } from 'rxjs';
-import { AbstractApiHandlerService } from 'src/app/abstract-api-handler-service';
+import { AbstractApiHandlerService } from '../../abstract-api-handler-service';
 
 @Injectable({
   providedIn: 'root',
@@ -102,7 +102,7 @@ export class RoomsService extends AbstractApiHandlerService {
   }
 
   saveData(data: RoomInterface[]): Observable<boolean> {
-    console.log(data);
+    // console.log(data);
     const rooms = JSON.stringify(data);
 
     window.localStorage.setItem('hotel-rooms', rooms);
