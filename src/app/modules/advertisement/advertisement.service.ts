@@ -38,8 +38,7 @@ export class AdvertisementService {
     );
 
     if (roomIndex === -1) {
-      // throw new Error('Room not found');
-      return ;
+      throw new Error('Room not found');
     }
 
     this.roomService[roomIndex] = room;

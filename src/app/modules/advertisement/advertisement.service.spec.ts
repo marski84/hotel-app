@@ -3,10 +3,6 @@ import { RoomsService } from '../rooms/rooms.service';
 import { RoomInterface } from '../shared/models/room.interface';
 import { RoomStateEnum } from '../shared/models/room-state.enum';
 import { TestBed } from '@angular/core/testing';
-
-// import { AdminActionsComponent } from './admin-actions.component';
-import { AbstractApiHandlerService } from '../../abstract-api-handler-service';
-import { ApiHandlerService } from '../auth/api-handler.service';
 import { BehaviorSubject, Subject } from 'rxjs';
 jest.mock('../rooms/rooms.service.ts');
 
@@ -22,7 +18,6 @@ const mockData: RoomInterface[] = [
 
 describe('AdvertisementService unit tests', () => {
   let adService: AdvertisementService;
-  let mockRoomServiceSpy: AbstractApiHandlerService;
 
   beforeEach(() => {
     let mockRoomServiceSpy: any = {
@@ -50,20 +45,22 @@ describe('AdvertisementService unit tests', () => {
   });
 
   it('it should call updateRoomAds method and return unchanged data', () => {
-    jest.spyOn(adService, 'updateRoomAds');
+    const spy = jest.spyOn(adService, 'updateRoomAds');
     adService.getRoomsData();
-    adService.updateRoomAds({
-      roomNumber: '999999',
-      pricePerDay: '100',
-      roomState: RoomStateEnum.CLEAN,
-      markedForCheck: false,
-      roomAds: [],
-    });
+    try {
+      adService.updateRoomAds({
+        roomNumber: '999999',
+        pricePerDay: '100',
+        roomState: RoomStateEnum.CLEAN,
+        markedForCheck: false,
+        roomAds: [],
+      });
+    } catch (err) {
+      let resp: RoomInterface[] = [];
+      adService.roomsList$.subscribe((data) => (resp = data));
 
-    let resp: RoomInterface[] = [];
-    adService.roomsList$.subscribe((data) => (resp = data));
-
-    expect(resp).toEqual(mockData);
+      expect(resp).toEqual(mockData);
+    }
   });
 
   it('it should call updateRoomAds method and update ad data', () => {

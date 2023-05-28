@@ -5,6 +5,7 @@ import { of } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiHandlerService {
+
   constructor() {}
 
   getAuthLevel() {
@@ -16,8 +17,8 @@ export class ApiHandlerService {
     return of(true);
   }
 
-  handleAuthSuccess(auttLevel: string) {
-    window.sessionStorage.setItem('authLevelToken', auttLevel);
+  handleAuthSuccess(authLevel: string) {
+    window.sessionStorage.setItem('authLevelToken', authLevel);
 
     return of(true);
   }

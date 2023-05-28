@@ -128,7 +128,7 @@ export class RoomsService extends AbstractApiHandlerService {
 
     const roomIndex = this.findRoomIndex(updateData);
     if (roomIndex === -1) {
-      return;
+      throw new Error('Room not found');
     }
     this.hotelRooms[roomIndex].roomAds = updateData.roomAds;
     this.saveData(this.hotelRooms);
