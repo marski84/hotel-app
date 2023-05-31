@@ -3,8 +3,7 @@ import { RoomsService } from '../rooms/rooms.service';
 import { RoomInterface } from '../shared/models/room.interface';
 import { RoomStateEnum } from '../shared/models/room-state.enum';
 import { TestBed } from '@angular/core/testing';
-import { BehaviorSubject, Subject } from 'rxjs';
-jest.mock('../rooms/rooms.service.ts');
+import RoomServiceStub from './RoomService.stub';
 
 const mockData: RoomInterface[] = [
   {
@@ -18,16 +17,18 @@ const mockData: RoomInterface[] = [
 
 describe('AdvertisementService unit tests', () => {
   let adService: AdvertisementService;
+  let roomsService: RoomsService;
 
   beforeEach(() => {
-    let mockRoomServiceSpy: any = {
-      data$: new BehaviorSubject(mockData),
-      getData: jest.fn(),
-      data: new BehaviorSubject(mockData),
-      saveData: jest.fn(),
-    };
+    TestBed.configureTestingModule({
+      providers: [
+        AdvertisementService,
+        { provide: RoomsService, useClass: RoomServiceStub },
+      ],
+    });
 
-    adService = new AdvertisementService(mockRoomServiceSpy as RoomsService);
+    adService = TestBed.get(AdvertisementService);
+    roomsService = TestBed.get(RoomsService);
   });
 
   it('initially it should create adService instance', () => {
@@ -35,17 +36,29 @@ describe('AdvertisementService unit tests', () => {
     expect(adService).toBeInstanceOf(AdvertisementService);
   });
 
-  it('it should call getRoomsData method, subscribe to BehaviourSubject and recieve mockData', () => {
+  it('it should call getRoomsData method, subscribe to BehaviourSubject and receive mockData', () => {
+    const mockRoomsData: RoomInterface[] = [
+      {
+        roomNumber: '1',
+        pricePerDay: '100',
+        roomState: RoomStateEnum.CLEAN,
+        markedForCheck: false,
+        roomAds: [],
+      },
+    ];
+
     let resp: RoomInterface[] = [];
     const adServiceSpy = jest.spyOn(adService, 'getRoomsData');
     adService.getRoomsData();
+
     adService.roomsList$.subscribe((val) => (resp = val));
+
     expect(adServiceSpy).toHaveBeenCalled();
-    expect(resp).toEqual(mockData);
+    expect(resp).toEqual(mockRoomsData);
   });
 
   it('it should call updateRoomAds method and return unchanged data', () => {
-    const spy = jest.spyOn(adService, 'updateRoomAds');
+    jest.spyOn(adService, 'updateRoomAds');
     adService.getRoomsData();
     try {
       adService.updateRoomAds({

@@ -2,6 +2,7 @@ import { BehaviorSubject, of } from 'rxjs';
 import { RoomsService } from './rooms.service';
 import { RoomStateEnum } from '../shared/models/room-state.enum';
 import { RoomInterface } from '../shared/models/room.interface';
+import { TestBed } from '@angular/core/testing';
 
 describe('roomsService ', () => {
   let mockRoomsService: RoomsService;
@@ -16,7 +17,10 @@ describe('roomsService ', () => {
   ];
 
   beforeEach(() => {
-    mockRoomsService = new RoomsService();
+    TestBed.configureTestingModule({
+      providers: [RoomsService],
+    });
+    mockRoomsService = TestBed.get(RoomsService);
     mockRoomsService.hotelRooms = mockData;
   });
 

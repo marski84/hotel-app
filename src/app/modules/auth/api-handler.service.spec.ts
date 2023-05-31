@@ -1,4 +1,4 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { ApiHandlerService } from './api-handler.service';
 describe('TokenService', () => {
   let service: ApiHandlerService;
@@ -35,9 +35,26 @@ describe('TokenService', () => {
 
     let result: boolean = false;
     service.handleAuthSuccess('admin').subscribe((value) => (result = value));
+    expect(handleSuccessSpy).toHaveBeenCalledTimes(1);
     expect(result).toEqual(true);
 
     const authToken = service.getAuthLevel();
+    expect(getAuthSpy).toHaveBeenCalledTimes(1);
+
     expect(authToken).toEqual('admin');
+  });
+
+  it('given logOutUser is called it should log out user, remove login data from session service and getAuthLevel method should return null', () => {
+    const logOutSpy = jest.spyOn(service, 'logOutUser');
+    const getAuthSpy = jest.spyOn(service, 'getAuthLevel');
+
+    service.handleAuthSuccess('admin');
+    service.logOutUser();
+    expect(logOutSpy).toHaveBeenCalledTimes(1);
+
+    const result = service.getAuthLevel();
+
+    expect(getAuthSpy).toHaveBeenCalledTimes(1);
+    expect(result).toEqual(null);
   });
 });

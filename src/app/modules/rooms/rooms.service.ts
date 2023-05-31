@@ -134,13 +134,13 @@ export class RoomsService extends AbstractApiHandlerService {
     this.saveData(this.hotelRooms);
   }
 
-  private findRoomIndex(updateData: RoomInterface) {
+  protected findRoomIndex(updateData: RoomInterface) {
     return this.hotelRooms.findIndex(
       (room) => room.roomNumber === updateData.roomNumber
     );
   }
 
-  private updateRoomState(roomIndex: number, updateData: RoomInterface) {
+  protected updateRoomState(roomIndex: number, updateData: RoomInterface) {
     this.hotelRooms[roomIndex].roomState = updateData.roomState;
     this.saveData(this.hotelRooms);
   }
