@@ -9,16 +9,17 @@ export class ApiHandlerServiceStub extends ApiHandlerService {
   }
 
   override getAuthLevel() {
-    return window.sessionStorage.getItem('authLevelToken');
+    // return window.sessionStorage.getItem('authLevelToken');
+    return 'admin';
   }
 
   override logOutUser() {
-    window.sessionStorage.removeItem('authLevelToken');
+    // window.sessionStorage.removeItem('authLevelToken');
     return of(true);
   }
 
   override handleAuthSuccess(authLevel: string) {
-    window.sessionStorage.setItem('authLevelToken', authLevel);
+    // window.sessionStorage.setItem('authLevelToken', authLevel);
 
     return of(true);
   }
