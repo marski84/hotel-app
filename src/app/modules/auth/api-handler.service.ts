@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
+import { AbstractSessionHandlerService } from './AbstractSessionHandlerService';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ApiHandlerService {
-
+export class ApiHandlerService implements AbstractSessionHandlerService {
   constructor() {}
 
   getAuthLevel() {

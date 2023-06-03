@@ -27,8 +27,8 @@ describe('AdvertisementService unit tests', () => {
       ],
     });
 
-    adService = TestBed.get(AdvertisementService);
-    roomsService = TestBed.get(RoomsService);
+    adService = TestBed.inject(AdvertisementService);
+    roomsService = TestBed.inject(RoomsService);
   });
 
   it('initially it should create adService instance', () => {

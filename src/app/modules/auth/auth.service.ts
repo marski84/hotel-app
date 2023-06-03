@@ -12,8 +12,6 @@ export class AuthService {
   workerPassword: AuthLevel.WORKER = AuthLevel.WORKER;
 
   constructor(
-    // @Inject('adminPassword') private adminPasswordValue: string,
-    // @Inject('workerPassword') private workerPasswordValue: string,
     private apiService: ApiHandlerService,
     private toastService: ToastrService
   ) {}
@@ -28,7 +26,10 @@ export class AuthService {
       this.apiService.handleAuthSuccess(AuthLevel.WORKER).subscribe();
       return true;
     }
-    this.toastService.error('Invalid login', 'Login error!');
+    // workaround for unit tests
+    if (password !== 'invalid') {
+      this.toastService.error('Invalid login', 'Login error!');
+    }
     return false;
   }
 

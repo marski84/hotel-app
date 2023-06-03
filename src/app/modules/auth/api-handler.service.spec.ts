@@ -7,7 +7,7 @@ describe('TokenService', () => {
     TestBed.configureTestingModule({
       providers: [ApiHandlerService],
     });
-    service = TestBed.get(ApiHandlerService);
+    service = TestBed.inject(ApiHandlerService);
     sessionStorage.clear();
   });
   it('should create the service', () => {
