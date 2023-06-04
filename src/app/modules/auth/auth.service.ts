@@ -28,7 +28,7 @@ export class AuthService {
     }
     // workaround for unit tests
     if (password !== 'invalid') {
-      this.toastService.error('Invalid login', 'Login error!');
+    this.toastService.error('Invalid login', 'Login error!');
     }
     return false;
   }

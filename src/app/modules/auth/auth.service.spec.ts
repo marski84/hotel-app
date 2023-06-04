@@ -3,18 +3,19 @@ import { AuthService } from './auth.service';
 import { ApiHandlerService } from './api-handler.service';
 import { ApiHandlerServiceStub } from './api-handler.service.stub';
 import { ToastrService } from 'ngx-toastr';
-// import { ToastrService } from 'ngx-toastr';
 
 describe('authService unit tests', () => {
   let authService: AuthService;
   let apiService: ApiHandlerService;
-  let toastService = jest.fn(() => {});
+  let toastService = jest.fn(() => {
+    error: 'ok';
+  });
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         { provide: ApiHandlerService, useClass: ApiHandlerServiceStub },
-        { provide: ToastrService, useValue: ToastrService },
+        { provide: ToastrService, useValue: toastService },
       ],
     });
 

@@ -1,4 +1,3 @@
-import { BehaviorSubject, of } from 'rxjs';
 import { RoomsService } from './rooms.service';
 import { RoomStateEnum } from '../shared/models/room-state.enum';
 import { RoomInterface } from '../shared/models/room.interface';
@@ -20,7 +19,7 @@ describe('roomsService ', () => {
     TestBed.configureTestingModule({
       providers: [RoomsService],
     });
-    mockRoomsService = TestBed.get(RoomsService);
+    mockRoomsService = TestBed.inject(RoomsService);
     mockRoomsService.hotelRooms = mockData;
   });
 
