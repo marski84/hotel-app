@@ -1,24 +1,26 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { AbstractSessionHandlerService } from './AbstractSessionHandlerService';
+import { WINDOW } from '../shared/WINDOW_TOKEN';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiHandlerService implements AbstractSessionHandlerService {
-  constructor() {}
+  constructor(@Inject(WINDOW) private window: Window) {}
 
   getAuthLevel() {
-    return window.sessionStorage.getItem('authLevelToken');
+    return this.window.sessionStorage.getItem('authLevelToken');
+    
   }
 
   logOutUser() {
-    window.sessionStorage.removeItem('authLevelToken');
+    this.window.sessionStorage.removeItem('authLevelToken');
     return of(true);
   }
 
   handleAuthSuccess(authLevel: string) {
-    window.sessionStorage.setItem('authLevelToken', authLevel);
+    this.window.sessionStorage.setItem('authLevelToken', authLevel);
 
     return of(true);
   }

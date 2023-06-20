@@ -3,12 +3,16 @@ import { ApiHandlerService } from './api-handler.service';
 describe('TokenService', () => {
   let service: ApiHandlerService;
 
+  const windowMock = {
+    setItem: () => {},
+    getItem: () => {},
+  };
+
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ApiHandlerService],
+      providers: [ApiHandlerService, { provide: Window, useValue: windowMock }],
     });
     service = TestBed.inject(ApiHandlerService);
-    sessionStorage.clear();
   });
   it('should create the service', () => {
     expect(service).toBeTruthy();
@@ -16,7 +20,11 @@ describe('TokenService', () => {
 
   it('given authLevel was set it should return value when getAuthLevel has been called', () => {
     const spy = jest.spyOn(service, 'getAuthLevel');
-    sessionStorage.setItem('authLevelToken', 'admin');
+    service.handleAuthSuccess('admin');
+    windowMock.getItem = () => {
+      return 'admin';
+    };
+
     const authToken = service.getAuthLevel();
     expect(spy).toHaveBeenCalled();
     expect(authToken).toEqual('admin');
@@ -24,6 +32,9 @@ describe('TokenService', () => {
 
   it('given authLevel was no set it should return undefined when getAuthLevel has been called', () => {
     const spy = jest.spyOn(service, 'getAuthLevel');
+    windowMock.getItem = () => {};
+    service.logOutUser();
+
     const authToken = service.getAuthLevel();
     expect(spy).toHaveBeenCalled();
     expect(authToken).toBe(null);
