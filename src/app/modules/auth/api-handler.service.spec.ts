@@ -1,71 +1,57 @@
 import { TestBed } from '@angular/core/testing';
 import { ApiHandlerService } from './api-handler.service';
+import { WINDOW } from '../shared/WINDOW_TOKEN';
 describe('TokenService', () => {
-  let service: ApiHandlerService;
+  let serviceMock: ApiHandlerService;
 
   const windowMock = {
-    setItem: () => {},
-    getItem: () => {},
+    sessionStorage: {
+      setItem: jest.fn(),
+      getItem: jest.fn(),
+      removeItem: jest.fn(),
+    },
   };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ApiHandlerService, { provide: Window, useValue: windowMock }],
+      providers: [ApiHandlerService, { provide: WINDOW, useValue: windowMock }],
     });
-    service = TestBed.inject(ApiHandlerService);
+    serviceMock = TestBed.inject(ApiHandlerService);
   });
+
   it('should create the service', () => {
-    expect(service).toBeTruthy();
+    expect(serviceMock).toBeTruthy();
   });
 
-  it('given authLevel was set it should return value when getAuthLevel has been called', () => {
-    const spy = jest.spyOn(service, 'getAuthLevel');
-    service.handleAuthSuccess('admin');
-    windowMock.getItem = () => {
-      return 'admin';
-    };
+  it('should getAuthLevel call sessionStorage.getItem', () => {
+    // given
+    windowMock.sessionStorage.getItem.mockReturnValue('wartosc_testowa');
 
-    const authToken = service.getAuthLevel();
-    expect(spy).toHaveBeenCalled();
-    expect(authToken).toEqual('admin');
+    // when
+    const authToken = serviceMock.getAuthLevel();
+
+    // then
+    expect(windowMock.sessionStorage.getItem).toHaveBeenCalledWith(
+      'authLevelToken'
+    );
+    expect(authToken).toEqual('wartosc_testowa');
   });
 
-  it('given authLevel was no set it should return undefined when getAuthLevel has been called', () => {
-    const spy = jest.spyOn(service, 'getAuthLevel');
-    windowMock.getItem = () => {};
-    service.logOutUser();
-
-    const authToken = service.getAuthLevel();
-    expect(spy).toHaveBeenCalled();
-    expect(authToken).toBe(null);
+  it('should logOutUser call sessionStorage.removeItem', () => {
+    // given
+    const windowSpy = windowMock.sessionStorage.removeItem;
+    // when
+    serviceMock.logOutUser();
+    // then
+    expect(windowSpy).toHaveBeenCalled();
   });
 
-  it('given authToken it should set it in storage and return observable === true', () => {
-    const getAuthSpy = jest.spyOn(service, 'getAuthLevel');
-    const handleSuccessSpy = jest.spyOn(service, 'handleAuthSuccess');
-
-    let result: boolean = false;
-    service.handleAuthSuccess('admin').subscribe((value) => (result = value));
-    expect(handleSuccessSpy).toHaveBeenCalledTimes(1);
-    expect(result).toEqual(true);
-
-    const authToken = service.getAuthLevel();
-    expect(getAuthSpy).toHaveBeenCalledTimes(1);
-
-    expect(authToken).toEqual('admin');
-  });
-
-  it('given logOutUser is called it should log out user, remove login data from session service and getAuthLevel method should return null', () => {
-    const logOutSpy = jest.spyOn(service, 'logOutUser');
-    const getAuthSpy = jest.spyOn(service, 'getAuthLevel');
-
-    service.handleAuthSuccess('admin');
-    service.logOutUser();
-    expect(logOutSpy).toHaveBeenCalledTimes(1);
-
-    const result = service.getAuthLevel();
-
-    expect(getAuthSpy).toHaveBeenCalledTimes(1);
-    expect(result).toEqual(null);
+  it('should handleAuthSuccess call sessionStorage.setItem', () => {
+    // given
+    const windowSpy = windowMock.sessionStorage.setItem;
+    // when
+    serviceMock.handleAuthSuccess('test_value');
+    // then
+    expect(windowSpy).toHaveBeenCalledTimes(1);
   });
 });
