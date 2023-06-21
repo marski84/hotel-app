@@ -15,12 +15,9 @@ export class ApiHandlerService implements AbstractSessionHandlerService {
 
   logOutUser() {
     this.window.sessionStorage.removeItem('authLevelToken');
-    return of(true);
   }
 
   handleAuthSuccess(authLevel: string) {
     this.window.sessionStorage.setItem('authLevelToken', authLevel);
-
-    return of(true);
   }
 }

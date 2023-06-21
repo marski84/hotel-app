@@ -18,18 +18,16 @@ export class AuthService {
 
   handleUserAuth(password: string) {
     if (password === this.adminPassword) {
-      this.apiService.handleAuthSuccess(AuthLevel.ADMIN).subscribe();
+      this.apiService.handleAuthSuccess(AuthLevel.ADMIN);
       return true;
     }
 
     if (password === this.workerPassword) {
-      this.apiService.handleAuthSuccess(AuthLevel.WORKER).subscribe();
+      this.apiService.handleAuthSuccess(AuthLevel.WORKER);
       return true;
     }
-    // workaround for unit tests
-    if (password !== 'invalid') {
     this.toastService.error('Invalid login', 'Login error!');
-    }
+
     return false;
   }
 
@@ -38,6 +36,6 @@ export class AuthService {
   }
 
   handleLogout() {
-    this.apiService.logOutUser().subscribe();
+    this.apiService.logOutUser();
   }
 }

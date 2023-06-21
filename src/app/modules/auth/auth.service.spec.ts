@@ -1,74 +1,57 @@
 import { TestBed } from '@angular/core/testing';
 import { AuthService } from './auth.service';
 import { ApiHandlerService } from './api-handler.service';
-import { ApiHandlerServiceStub } from './api-handler.service.stub';
 import { ToastrService } from 'ngx-toastr';
 
 describe('authService unit tests', () => {
-  let authService: AuthService;
-  let apiService: ApiHandlerService;
-  // let toastService = jest.fn(() => {
-  //   error: 'ok';
-  // });
+  let authServiceMock: AuthService;
+  let apiServiceMock: ApiHandlerService;
+
   const toastServiceMock = {
     error: jest.fn(),
+  };
+
+  const apiHandlerServiceMock = {
+    getAuthLevel: jest.fn(),
+    logOutUser: jest.fn(),
+    handleAuthSuccess: jest.fn(),
   };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        { provide: ApiHandlerService, useClass: ApiHandlerServiceStub },
+        { provide: ApiHandlerService, useValue: apiHandlerServiceMock },
         { provide: ToastrService, useValue: toastServiceMock },
       ],
     });
 
-    authService = TestBed.get(AuthService);
-    apiService = TestBed.get(ApiHandlerService);
+    authServiceMock = TestBed.inject(AuthService);
+    apiServiceMock = TestBed.inject(ApiHandlerService);
   });
-
-  // should return UserAuthPriviliges after call
-  it('given method getUserAuthPriviliges is called when it return data than is should return user piviliges data', () => {
-    // given
-    const authServiceSpy = jest.spyOn(authService, 'getUserAuthPriviliges');
-
-    // when
-    let result;
-    authService.getUserAuthPriviliges().subscribe((resp) => (result = resp));
-
+  it('should getUserAuthPriviliges call apiServiceMock.getAuthLevel', () => {
+    authServiceMock.getUserAuthPriviliges();
     // then
-    expect(authServiceSpy).toHaveBeenCalled();
-    expect(result).toEqual('admin');
+    expect(apiServiceMock.getAuthLevel).toHaveBeenCalled();
   });
 
-  it('given method handleUserAuth method is called when it returns than it should return true', () => {
-    const methodSpy = jest.spyOn(authService, 'handleUserAuth');
-    const apiHandlerSpy = jest.spyOn(apiService, 'handleAuthSuccess');
-
-    const result = authService.handleUserAuth('admin');
-
-    expect(methodSpy).toHaveBeenCalled();
-    expect(apiHandlerSpy).toHaveBeenCalled();
-    expect(result).toEqual(true);
+  it('should handleLogout call apiServiceMock.logOutUser', () => {
+    // when
+    authServiceMock.handleLogout();
+    // then
+    expect(apiHandlerServiceMock.logOutUser).toHaveBeenCalled();
   });
 
-  it('given method logOutUser is called when it is called it should not throw error', () => {
-    const methodSpy = jest.spyOn(authService, 'handleLogout');
-    const apiHandlerService = jest.spyOn(apiService, 'logOutUser');
-
-    authService.handleLogout();
-
-    expect(methodSpy).toHaveBeenCalled();
-    expect(apiHandlerService).toHaveBeenCalled();
+  it('should handleUserAuth called with valid credentials call apiServiceMock. handleAuthSuccess', () => {
+    // when
+    authServiceMock.handleUserAuth('admin');
+    // then
+    expect(apiServiceMock.handleAuthSuccess).toHaveBeenCalledWith('admin');
   });
 
-  it('given handleUserAuth is called with invalid credentials when it is called than it should return false', () => {
-    const methodSpy = jest.spyOn(authService, 'handleUserAuth');
-    const apiHandlerService = jest.spyOn(apiService, 'handleAuthSuccess');
-
-    const result = authService.handleUserAuth('invalid');
-    expect(methodSpy).toHaveBeenCalled();
-    expect(result).toEqual(false);
-    expect(apiHandlerService).not.toHaveBeenCalled();
-    // expect(toastServiceMock.error).toHaveBeenCalled();
+  it('should handleUserAuth called with invalid credentials call toastServiceMock.error', () => {
+    // when
+    authServiceMock.handleUserAuth('invalid_credentials');
+    // then
+    expect(toastServiceMock.error).toHaveBeenCalled();
   });
 });
