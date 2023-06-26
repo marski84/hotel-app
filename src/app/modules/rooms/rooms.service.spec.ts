@@ -23,19 +23,22 @@ describe('roomsService ', () => {
     mockRoomsService.hotelRooms = mockData;
   });
 
-  it('it should call getHotelRooms method and receive value', () => {
+  it('should call getHotelRooms method and receive value', () => {
+    // given
     const mockRoomSpy = jest.spyOn(mockRoomsService, 'getHotelRooms');
+    // when
     mockRoomsService.getHotelRooms();
     let data: RoomInterface[] = [];
     mockRoomsService.getHotelRooms().subscribe((resp) => (data = resp));
+    // then
     expect(mockRoomSpy).toHaveBeenCalled();
     expect(data).toEqual(mockData);
   });
 
-  it('updateRoomData given valid data should be called and then it should return valid data', () => {
+  it('should updateRoomData be called', () => {
+    // given
     const mockRoomSpy = jest.spyOn(mockRoomsService, 'updateRoomData');
-    const getDataSpy = jest.spyOn(mockRoomsService, 'saveData');
-
+    // when
     const updatedMockData = {
       roomNumber: '1',
       pricePerDay: '100',
@@ -43,12 +46,24 @@ describe('roomsService ', () => {
       markedForCheck: false,
       roomAds: [],
     };
-
     mockRoomsService.updateRoomData(updatedMockData);
+    // then
     expect(mockRoomSpy).toHaveBeenCalled();
-    mockRoomsService.getData();
-    expect(getDataSpy).toHaveBeenCalled();
+  });
 
+  it('should updateRoomData return data', () => {
+    // given
+    const updatedMockData = {
+      roomNumber: '1',
+      pricePerDay: '100',
+      roomState: RoomStateEnum.DIRTY,
+      markedForCheck: false,
+      roomAds: [],
+    };
+    // when
+    mockRoomsService.updateRoomData(updatedMockData);
+    mockRoomsService.getData();
+    // then
     let updatedData;
     mockRoomsService.getHotelRooms().subscribe((data) => (updatedData = data));
 

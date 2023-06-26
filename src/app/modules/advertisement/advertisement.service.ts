@@ -33,6 +33,11 @@ export class AdvertisementService {
     if (!room) {
       return;
     }
+
+    if (this.roomsList.length === 0) {
+      throw new Error('dupa');
+    }
+
     const roomIndex = this.roomsList.findIndex(
       (roomInList) => roomInList.roomNumber === room.roomNumber
     );
