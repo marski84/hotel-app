@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RoomsService } from '../rooms/rooms.service';
-import { BehaviorSubject, map, tap } from 'rxjs';
+import { BehaviorSubject, first, map, tap } from 'rxjs';
 import { RoomStateEnum } from '../shared/models/room-state.enum';
 import { RoomInterface } from '../shared/models/room.interface';
 
@@ -8,11 +8,17 @@ import { RoomInterface } from '../shared/models/room.interface';
   providedIn: 'root',
 })
 export class AdvertisementService {
-  private roomsList!: RoomInterface[];
-
   readonly roomsList$: BehaviorSubject<RoomInterface[]> = new BehaviorSubject(
-    this.roomsList
+    [] as any
   );
+
+  // TODO: co tu sie staneło
+  private readonly dataChanged$ = this.roomService.data$
+    .pipe(
+      map((data) => this.handleFilterRoomList(data)),
+      tap((filteredData) => this.roomsList$.next(filteredData))
+    )
+    .subscribe();
 
   readonly selectedAdProviders$: BehaviorSubject<any> = new BehaviorSubject([]);
 
@@ -20,25 +26,20 @@ export class AdvertisementService {
 
   getRoomsData() {
     this.roomService.getData();
-    this.roomService.data$
-      .pipe(
-        map((data) => this.handleFilterRoomList(data)),
-        tap((filteredData) => (this.roomsList = filteredData)),
-        tap(() => this.roomsList$.next(this.roomsList))
-      )
-      .subscribe();
   }
 
   updateRoomAds(room: RoomInterface) {
-    if (!room) {
-      return;
+    // if (!room) {
+    //   return;
+    // }
+
+    const roomsList = this.roomsList$.getValue();
+
+    if (roomsList.length === 0) {
+      throw new Error('No valid rooms list!');
     }
 
-    if (this.roomsList.length === 0) {
-      throw new Error('dupa');
-    }
-
-    const roomIndex = this.roomsList.findIndex(
+    const roomIndex = roomsList.findIndex(
       (roomInList) => roomInList.roomNumber === room.roomNumber
     );
 
@@ -46,8 +47,8 @@ export class AdvertisementService {
       throw new Error('Room not found');
     }
 
-    this.roomService[roomIndex] = room;
-    return this.roomsList$.next(this.roomsList);
+    roomsList[roomIndex] = room;
+    return this.roomsList$.next(roomsList);
   }
 
   private handleFilterRoomList(roomList: RoomInterface[]) {
@@ -58,7 +59,7 @@ export class AdvertisementService {
   }
 
   resetRoomsData() {
-    this.roomsList = [];
+    this.roomsList$.next([]);
     this.getRoomsData();
     this.selectedAdProviders$.next([]);
   }

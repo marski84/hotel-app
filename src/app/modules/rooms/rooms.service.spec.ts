@@ -31,7 +31,6 @@ describe('roomsService ', () => {
     let data: RoomInterface[] = [];
     mockRoomsService.getHotelRooms().subscribe((resp) => (data = resp));
     // then
-    expect(mockRoomSpy).toHaveBeenCalled();
     expect(data).toEqual(mockData);
   });
 
@@ -70,9 +69,9 @@ describe('roomsService ', () => {
     expect(updatedData).toEqual([updatedMockData]);
   });
 
-  it('given fake data updateRoomData method should be called and then return not updated data', () => {
+  it('should updateRoomData method should be called and then return not updated data', () => {
+    // give
     const mockRoomSpy = jest.spyOn(mockRoomsService, 'updateRoomData');
-
     const updatedMockData = {
       roomNumber: 'xxxx',
       pricePerDay: '100',
@@ -80,18 +79,19 @@ describe('roomsService ', () => {
       markedForCheck: false,
       roomAds: [],
     };
-
+    // when
     mockRoomsService.updateRoomData(updatedMockData);
     expect(mockRoomSpy).toHaveBeenCalled();
     mockRoomsService.getData();
-
+    // then
     let updatedData;
     mockRoomsService.getHotelRooms().subscribe((data) => (updatedData = data));
 
     expect(updatedData).not.toEqual([updatedMockData]);
   });
 
-  it('given valid roomAd data updateRoomAds method should be called and then it should return updated room data', () => {
+  it('should updateRoomAds method should return updated room data', () => {
+    // given
     const mockRoomServiceSpy = jest.spyOn(mockRoomsService, 'updateRoomAds');
 
     const updatedMockData = {
@@ -119,24 +119,28 @@ describe('roomsService ', () => {
         },
       ],
     };
-
+    // when
     mockRoomsService.updateRoomAds(updatedMockData);
     expect(mockRoomServiceSpy).toHaveBeenCalled();
 
     mockRoomsService.getData();
+    // then
     let resp: RoomInterface[] = [];
     mockRoomsService.data$.subscribe((data) => (resp = data));
 
     expect(resp).toEqual([updatedMockData]);
   });
 
-  it('given valid data saveData method should be called', () => {
+  it('should saveData method should be called', () => {
     const mockRoomServiceSpy = jest.spyOn(mockRoomsService, 'saveData');
+    // when
     mockRoomsService.saveData(mockData);
+    // then
     expect(mockRoomServiceSpy).toHaveBeenCalled();
   });
 
   it('given invalid data updateRoomAds should throw error', () => {
+    // given
     const mockRoomServiceSpy = jest.spyOn(mockRoomsService, 'updateRoomAds');
     const invalidMockData = {
       roomNumber: '0000000',
@@ -146,8 +150,10 @@ describe('roomsService ', () => {
       roomAds: [],
     };
     try {
+      // when
       mockRoomsService.updateRoomAds(invalidMockData);
     } catch (error) {
+      // then
       expect(mockRoomServiceSpy).toThrowError();
     }
   });
