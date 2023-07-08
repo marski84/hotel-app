@@ -129,7 +129,9 @@ describe('advertisement service unit test', () => {
     // when
     service.getRoomsData();
     // then
-    expect(service.updateRoomAds(updatedData)).toThrow();
+    expect(() => service.updateRoomAds(updatedData)).toThrowError(
+      'Room not found'
+    );
   });
 
   it('should updateRoomAds throw error when getData is no called initialy', () => {
@@ -161,7 +163,9 @@ describe('advertisement service unit test', () => {
     };
     service.resetRoomsData();
     // then
-    expect(service.updateRoomAds(updatedData)).toThrow();
+    expect(() => service.updateRoomAds(updatedData)).toThrowError(
+      'No valid rooms list!'
+    );
   });
 
   it('should resetRoomsData reset roomsList', () => {
